@@ -1,0 +1,19 @@
+Question.
+We are given the growth curve of Escherichia coli in a 1L bioreactor over 20h (Fig. 4 in [1]). The goal is to provide a simple model of the population growth.
+
+Details.
+The model must only cover a simple growth behavior of the E. coli population that reasonably well fits the growth data in Fig. 4 - it should be as simple as possible. In particular it can neglect IPTG induction, O2, kanamycin, and the production of HA1, among many other effects.
+
+Subquestions.
+1. Propose a Chemical Reaction Network (CRN) model for a growth process and discuss your design decisions. The CRN model can assume that all reactions are of the form
+
+A + B -> C + D [gamma]
+
+with A, B, C, and D also potentially being absent from the reaction and the rection rate being gamma * [A] * [B] (mass action kinetics). Discuss how you match the model outputs (e.g. counts/mL) to the OD in Fig. 4.
+
+2. Code & simulate your model in Python MobsPy [2] for realistic but guessed parameters in your model.
+
+3. Find optimised model parameters with Python scipy.optimize (or a similar library) and plot an overlay of the measured curve in Fig. 4 and your model output.
+
+[1] https://www.researchsquare.com/article/rs-16009/v1
+[2] https://github.com/ROBACON/mobspy

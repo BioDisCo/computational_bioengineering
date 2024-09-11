@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Computational Bioengineering</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+  <h1 class="mt-3 m-3">Computational Bioengineering
+  </h1>
+
+  <nav class="mt-4">
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <button class="nav-link active"
+              id="nav-home-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#nav-mod"
+              type="button"
+              role="tab"
+              aria-controls="nav-mod"
+              aria-selected="true">Modalities</button>
+      <button class="nav-link"
+              id="nav-profile-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#nav-lec"
+              type="button" role="tab"
+              aria-controls="nav-lec"
+              aria-selected="false">Lectures</button>
+      <button class="nav-link"
+              id="nav-contact-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#nav-prob"
+              type="button"
+              role="tab"
+              aria-controls="nav-prob"
+              aria-selected="false">Problem Sessions</button>
+      <button class="nav-link"
+              id="nav-contact-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#nav-hw"
+              type="button"
+              role="tab"
+              aria-controls="nav-hw"
+              aria-selected="false">Homework</button>
+    </div>
+  </nav>
+
+  <div class="tab-content" id="nav-tabContent">
+    <!-- tab -->
+    <div class="tab-pane fade show active" id="nav-mod" role="tabpanel" aria-labelledby="nav-mod-tab">
+      <div class="container-sm mt-4">
+
+        <h4>Instructors
+        </h4>
+        <ul>
+            <li><a href="http://www.lsv.fr/~mfuegger/">Matthias F&uuml;gger</a></li>
+            <li><a href="https://www.thomasnowak.net/">Thomas Nowak</a></li>
+        </ul>
+
+        <h4>Practical information
+        </h4>
+        <p>
+        The course will be given in English. The sessions will take place on Monday from 1:15pm to 5:30pm at ENS Paris-Saclay in room 1B10.
+        </p>
+
+        <h4>Prerequisites
+        </h4>
+        <p>
+        No previous knowledge of biology or chemistry is required. The following will be helpful, however: 
+        </p>
+        <ul>
+            <li>basic algorithmics and programming (we'll program in Python)</li>
+            <li>basic graph theory definitions</li>
+            <li>basic circuit theory (notions like NAND, NOR shouldn't scare you)</li>
+            <li>basic probability theory</li>
+            <li>vocabulary of ordinary differential equations</li>
+        </ul>
+
+        <h4>Motivations and main objectives
+        </h4>
+        <p>
+        Bioengineering is a rising discipline with applications in bioproduction, pharma, environmental sciences, and medicine. It inherently requires skills from biology, computer science, control theory, and other fields of engineering. The course will feature experimental data from spectroscopy and microscopy, mathematical modeling, compilation, control, and optimization of an example process.
+        </p>
+
+        <h4>Related courses
+        </h4>
+        <ul>
+            <li><a href="https://wikimpri.dptinfo.ens-cachan.fr/doku.php?id=cours:c-1-24">Probabilistic Aspects of Computer Science</a></li>
+            <li><a href="https://wikimpri.dptinfo.ens-cachan.fr/doku.php?id=cours:c-2-19">Biochemical Programming</a></li>
+            <li><a href="https://wikimpri.dptinfo.ens-cachan.fr/doku.php?id=cours:c-2-18-1">Distributed Algorithms for Networks</a></li>
+        </ul>
+
+        <h4>Bibiography
+        </h4>
+        <ul>
+            <li>Uri Alon, <a href="https://www.amazon.fr/Introduction-Systems-Biology-Mathematical-Computational/dp/1439837171">An Introduction to Systems Biology</a>, 2nd edition, CRC Press, Boca Raton, 2019.</li>
+            <li>Bruce Alberts et al., <a href="https://www.amazon.fr/Molecular-Biology-Cell-Bruce-Alberts/dp/0393884821">Molecular Biology of the Cell</a>, 7th edition, W. W. Norton & Company, New York, 2022.</li>
+            <li>Jennifer A. N. Brophy and Christopher A. Voigt, <a href="https://doi.org/10.1038%2Fnmeth.2926">Principles of genetic circuit design</a>, Nature Methods 11(5):508-520, 2014.</li>
+            <li>Alec A. Nielsen et al., <a href="https://doi.org/10.1126/science.aac7341">Genetic circuit design automation</a>, Science 352(6281), 2016.</li>
+            <li>M. Omar Din et al., <a href="https://doi.org/10.1038/nature18930">Synchronized cycles of bacterial lysis for in vivo delivery</a>, Nature 536:81-85, 2017.</li>
+            <li>Michael J. Diao, M. Omar Din, Lev Tsimring, and Jeff Hasty, <a href="https://doi.org/10.1126/science.aaw0542">Rock-paper-scissors: engineered population dynamics increase genetic stability</a>, Science 365(6457):1045-1049, 2019.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- tab -->
+    <div class="tab-pane fade" id="nav-lec" role="tabpanel" aria-labelledby="nav-lec-tab">
+      <div class="container-sm mt-4">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">session</th>
+              <th scope="col">date</th>
+              <th scope="col">topic</th>
+              <th scope="col">notebook</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>September 16, 2024</td>
+              <td>Introduction</td>
+              <td><a href="intro/notes.html">(html)</a>
+                  <a href="intro/notes.ipynb">(ipynb)</a>
+                  <a href="intro/notes.zip">(zip)</a>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>September 23, 2024</td>
+              <td>Chemical Reaction Networks</td>
+              <td>(html)
+                  (ipynb)
+                  (zip)
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>September 30, 2024</td>
+              <td>Distributed algorithms, majority consensus</td>
+              <td><a href="consensus/notes.html">(html)</a>
+                  <a href="consensus/notes.ipynb">(ipynb)</a>
+                  <a href="consensus/notes.zip">(zip)</a>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>October 7, 2024</td>
+              <td>Genetic Control</td>
+              <td><a href="genetic_control/notes.html">(html)</a>
+                  <a href="genetic_control/notes.ipynb">(ipynb)</a>
+                  <a href="genetic_control/notes.zip">(zip)</a>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>October 14, 2024</td>
+              <td>Logical Gates</td>
+              <td><a href="gates/notes.html">(html)</a>
+                  <a href="gates/notes.ipynb">(ipynb)</a>
+                  <a href="gates/notes.zip">(zip)</a>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">6</th>
+              <td>October 21, 2024</td>
+              <td>Oscillators</td>
+              <td><a href="oscillators/notes.html">(html)</a>
+                  <a href="oscillators/notes.ipynb">(ipynb)</a>
+                  <a href="oscillators/notes.zip">(zip)</a>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">7</th>
+              <td>November 4, 2024</td>
+              <td>Plasmid Design</td>
+              <td>(html)
+                  (ipynb)
+                  (zip)
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">8</th>
+              <td>November 18, 2024</td>
+              <td>Stochastic simulation, Gillespie</td>
+              <td><a href="stochastic/notes.html">(html)</a>
+                  <a href="stochastic/notes.ipynb">(ipynb)</a>
+                  <a href="stochastic/notes.zip">(zip)</a>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">9</th>
+              <td>November 25, 2024</td>
+              <td>CRN Modeling with MobsPy</td>
+              <td>(html)
+                  (ipynb)
+                  (zip)
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">10</th>
+              <td>December 2, 2024</td>
+              <td>Parameter Estimation</td>
+              <td>(html)
+                  (ipynb)
+                  (zip)
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">11</th>
+              <td>December 9, 2024</td>
+              <td>Metabolic Networks</td>
+              <td>(html)
+                  (ipynb)
+                  (zip)
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">12</th>
+              <td>December 16, 2024</td>
+              <td>Raman Spectrum Analysis</td>
+              <td>(html)
+                  (ipynb)
+                  (zip)
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">13</th>
+              <td>January 6, 2025</td>
+              <td>Computer Vision for Microscopy</td>
+              <td>(html)
+                  (ipynb)
+                  (zip)
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- tab -->
+    <div class="tab-pane fade" id="nav-prob" role="tabpanel" aria-labelledby="nav-prob-tab">
+      <div class="container-sm mt-4">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">session</th>
+              <th scope="col">problem</th>
+              <th scope="col">notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Modeling</td>
+	      <td><a href="ps_modeling/notes.txt">(txt)</a><br />
+              </td>
+            </tr>
+            <!--tr>
+              <th scope="row">2</th>
+              <td>Python</td>
+              <td><a href="ps_python/notes.html">(html)</a>
+                  <a href="ps_python/notes.ipynb">(ipynb)</a>
+	            </td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Compiler</td>
+              <td><a href="ps_compiler/notes.html">(html)</a>
+                  <a href="ps_compiler/notes.ipynb">(ipynb)</a></td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>Oscillator</td>
+              <td><a href="ps_oscillator/notes.html">(html)</a>
+                  <a href="ps_oscillator/notes.ipynb">(ipynb)</a>
+                  <a href="ps_oscillator/notes.zip">(zip)</a></td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>Stochastic simulation</td>
+              <td><a href="ps_stochastic/notes.html">(html)</a>
+                  <a href="ps_stochastic/notes.ipynb">(ipynb)</a>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">6</th>
+              <td>Distributed circuit</td>
+              <td>Q&amp;A for Homework 3</td>
+            </tr-->
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <!-- tab -->
+    <div class="tab-pane fade" id="nav-hw" role="tabpanel" aria-labelledby="nav-hw-tab">
+      <div class="container-sm mt-4">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">session</th>
+              <th scope="col">notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!--tr>
+              <th scope="row">1</th>
+              <td><a href="hw01/hw1.1.html">(1.1 html)</a>
+                  <a href="hw01/hw1.2.html">(1.2 html)</a>
+                  <br>
+                  <a href="hw01/hw01.zip">(ipynb zip)</a>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>HW: finish the tasks in the compiler problem session 03</td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>
+                <a href="hw05/hw05.html">(html)</a>
+                <a href="hw05/hw05.ipynb">(ipynb)</a>
+              </td>
+            </tr-->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
