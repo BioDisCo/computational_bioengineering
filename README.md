@@ -1,1 +1,1 @@
-# computational_bioengineering
+# Computational Bioengineering Course Website
