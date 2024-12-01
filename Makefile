@@ -3,8 +3,9 @@ ZIPS = $(IPYNBS:.ipynb=.zip)
 HTMLS = $(IPYNBS:.ipynb=.html)
 DIRS = $(dir $(IPYNBS))
 FIGDIRS = $(foreach dir,$(DIRS),$(dir)figs)
+DATADIRS = $(foreach dir,$(DIRS),$(dir)data)
 
-all: $(FIGDIRS) $(HTMLS) $(ZIPS)
+all: $(FIGDIRS) $(DATADIRS) $(HTMLS) $(ZIPS)
 
 %/notes.html: %/notes.ipynb
 	jupyter nbconvert --stdout --to=html $< > $@
@@ -12,11 +13,15 @@ all: $(FIGDIRS) $(HTMLS) $(ZIPS)
 %/figs: %
 	mkdir -p $@
 
-%/notes.zip: %/notes.html %/figs
+%/data: %
+	mkdir -p $@
+
+%/notes.zip: %/notes.html %/figs %/data
 	cd $(dir $@); zip -r $(notdir $@) $(notdir $^)
 
 clean:
 	rm -f $(HTMLS) $(ZIPS)
 	rmdir $(FIGDIRS) 2>/dev/null || true
+	rmdir $(DATADIRS) 2>/dev/null || true
 	
 .PHONY: all clean
