@@ -7517,7 +7517,7 @@ a.anchor-link {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h1 id="Problem:-Modeling-and-parameter-estimation-for-Boolean-data">Problem: Modeling and parameter estimation for Boolean data<a class="anchor-link" href="#Problem:-Modeling-and-parameter-estimation-for-Boolean-data">¶</a></h1><hr/>
-<p>In this problem, we will work with data of the True/False type. Lots of data sets in the biological sciences are like this. For example, we might look at a certain mutation in <em>Drosophila</em> that affects development and we might check whether or not eggs hatch.</p>
+<p>In this problem, we will work with data of the True/False type. Lots of data sets in the biological sciences are like this.</p>
 <p>A neural circuit is a series of interconnected neurons that create a pathway to transmit a signal from where it is received to where it causes a behavioral response in an animal.  An example is the neural circuit involved in reversals in <em>C. elegans</em>.  This circuit consists of three types of neurons: sensory neurons receive stimuli from the environment, command interneurons integrate information from many sensory neurons and pass a signal to the motor neurons, and motor neurons that control worm behavior, such as reversals.</p>
 <p>There are six non-motor neurons acting in a circuit that responds to environmental cues and triggers a reversal, a shown in the figure below (based on <a href="https://doi.org/10.1371/journal.pone.0018766">Schultheis et. al. 2011</a>).  These include four sensory neurons (ALM, AVM, ASH, and PLM) and two interneurons (AVD and AVA).  Each sensory neuron is sensitive to a different type of stimulus.  For example, the sensory neuron we are studying (ASH) is sensitive to chemosensory stimuli such as toxins, while another neuron (PLM) is sensitive to mechanical stimuli (touch) in the posterior part of the worm's body.  The sensory neurons send signals that are integrated by the two command interneurons (AVA and AVD).  Each sensory neuron can provide an impulse to the command interneurons at any time.  In order for the command interneuron to fire and activate motor neurons, the sum of the stimuli at any point in time must exceed a certain threshold.  Once the stimuli from one or more sensory neurons has induced an action potential in a command interneuron, that signal is passed to motor neurons which will modulate worm behavior.</p>
 <div style="margin: auto; width: 400px">
@@ -7525,12 +7525,11 @@ a.anchor-link {
 </div>
 <p>In the experiment, we used optogenetics to dissect the function of individual neurons in this circuit.  We worked with two optogenetic worm strains.  The ASH strain has channelrhodopsin (ChR2, represented by a red barrel in the figure above) expressed only in the ASH sensory neuron.  When we shine blue light on this strain, we should activate the ChR2, which will allow sodium and calcium cations to flow into the neuron, simulating an action potential. We want to quantify how robustly this stimulation will cause the worm to exhibit aversion behavior and reverse.</p>
 <p>We also studied an AVA strain that has channelrhodopsin expressed only in the AVA command interneuron.  Our goal is to quantify the effects of stimulating this neuron in terms of reversals compared to the ASH neuron and to wild type.</p>
-<p>The True/False data here are the whether or not the worms undergo a reversal. Here is what the students observed in 2019, the last year we did this experiment.</p>
+<p>The True/False data here are the whether or not the worms undergo a reversal. Here is what was observed:</p>
 <table>
 <thead>
 <tr>
 <th style="text-align:center">Strain</th>
-<th style="text-align:center">Year</th>
 <th style="text-align:center">Trials</th>
 <th style="text-align:center">Reversals</th>
 </tr>
@@ -7538,55 +7537,26 @@ a.anchor-link {
 <tbody>
 <tr>
 <td style="text-align:center">WT</td>
-<td style="text-align:center">2019</td>
 <td style="text-align:center">50</td>
 <td style="text-align:center">6</td>
 </tr>
 <tr>
 <td style="text-align:center">ASH</td>
-<td style="text-align:center">2019</td>
 <td style="text-align:center">52</td>
 <td style="text-align:center">15</td>
 </tr>
 <tr>
 <td style="text-align:center">AVA</td>
-<td style="text-align:center">2019</td>
 <td style="text-align:center">53</td>
 <td style="text-align:center">40</td>
 </tr>
 </tbody>
 </table>
-<!--
-
-|WT|2017|55|7|
-|ASH|2017|54|18|
-|AVA|2017|52|28|
-|WT|2016|36|6|
-|ASH|2016|35|12|
-|AVA|2016|36|30|
-|WT|2015|35|0|
-|ASH|2015|35|9|
-|AVA|2015|36|33|
--->
 <p>Our goal is to estimate $\theta$, the probability of reversal for each respective strain.</p>
 <p><strong>a)</strong> Propose a generative model for worm reversals. It should include the parameter $\theta$.</p>
 <p><strong>b)</strong> If possible, derive an analytical expression for the maximum likelihood estimate of $\theta$. If you have the expression, compute the MLE for $\theta$ for each of the three strains. If not, numerically compute the MLE for $\theta$ for each of the three strains.</p>
 <p><strong>c)</strong> Compute confidence intervals for your estimates of $\theta$.</p>
 <p><strong>d)</strong> Comment on the results and conduct any other analyses you think may help you understand the results of this experiment.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
 </div>
 </div>
 </div>
