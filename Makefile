@@ -16,7 +16,7 @@ all: $(FIGDIRS) $(DATADIRS) $(HTMLS) $(ZIPS)
 %/data: %
 	mkdir -p $@
 
-%/notes.zip: %/notes.html %/figs %/data
+%/notes.zip: %/notes.html %/notes.ipynb %/figs %/data
 	cd $(dir $@); zip -r $(notdir $@) $(notdir $^)
 
 clean:
