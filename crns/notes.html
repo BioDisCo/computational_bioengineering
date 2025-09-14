@@ -7312,6 +7312,7 @@ a.anchor-link {
                     processEnvironments: true
                 },
                 displayAlign: 'center',
+                messageStyle: 'none',
                 CommonHTML: {
                     linebreaks: {
                     automatic: true
@@ -7590,10 +7591,14 @@ The parameter $\alpha$ is called the reaction's <em>rate constant</em>.</p>
 \frac{\mathrm{d}m}{\mathrm{d}t} &amp;= \beta_m - \gamma_m m, \\[1em]
 \frac{\mathrm{d}p}{\mathrm{d}t} &amp;= \beta_p m - \gamma_p p.
 \end{align}</p>
-<p>In general, the rate of a reaction $(\mathbf{r}, \mathbf{p}, \alpha)$ at time $t$ is $\alpha \prod_{s\in \mathcal{S}} s(t)^{\mathbf{r}(s)}$ where $s(t)$ is the concentration of species $s$ at time $t$. The differential equation for a species $s \in \mathcal{S}$ is:
+<p>CRNs assume the so-called <em>mass-action kinetics</em> for rates.
+There, the rate of a reaction $(\mathbf{r}, \mathbf{p}, \alpha)$ at time $t$ is $\alpha \prod_{s\in \mathcal{S}} s(t)^{\mathbf{r}(s)}$ where $s(t)$ is the concentration of species $s$ at time $t$. The differential equation for a species $s \in \mathcal{S}$ is:
 $$
 \frac{ds}{dt} = \sum_{(\mathbf{r}, \mathbf{p}, \alpha) \in \mathcal{R}} (\mathbf{p}(s) - \mathbf{r}(s)) \cdot \alpha \prod_{\tilde{s}\in \mathcal{S}} \tilde{s}(t)^{\mathbf{r}(\tilde{s})}
 $$</p>
+<blockquote>
+<p><strong><em>Question:</em></strong> What are cases where you would expect mass-action kinetics for rates to hold? Where do you think they break?</p>
+</blockquote>
 </div>
 </div>
 </div>
@@ -7613,7 +7618,7 @@ It is approximately $\Delta t \cdot \gamma_i(m,p)$, where $\gamma_i(m,p)$ is the
 <p>The following image shows state transitions and their corresponding reactions for large enough $m$ and $p$.
 Care has to be taken at the boundaries, e.g., if $m = 1$ or $m = 0$.</p>
 <div style="width: 500px; margin: auto;">
-<figure style="width: 100%; margin: auto; padding: 20px;">
+<figure style="width: 100%; margin: auto; padding: 20px; background: white;">
 <img alt="Markov chain" src="figs/markov.svg"/>
 </figure>
 </div>
