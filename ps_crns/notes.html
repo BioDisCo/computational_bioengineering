@@ -7312,6 +7312,7 @@ a.anchor-link {
                     processEnvironments: true
                 },
                 displayAlign: 'center',
+                messageStyle: 'none',
                 CommonHTML: {
                     linebreaks: {
                     automatic: true
@@ -7516,7 +7517,26 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Problem-1:-Death-Process">Problem 1: Death Process<a class="anchor-link" href="#Problem-1:-Death-Process">¶</a></h1><hr/>
+<style>
+details.spoiler {
+  display:inline;
+}
+details.spoiler summary {
+  display:inline;
+  cursor:pointer;
+  color:#0055aa;
+  text-decoration:underline;
+  margin-left:0.5em;
+}
+details.spoiler summary::marker {
+  display:none;
+}
+details.spoiler div {
+  display:block;
+  margin-left:1.5em;
+  color:#333;
+}
+</style>
 </div>
 </div>
 </div>
@@ -7527,12 +7547,70 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Problem-1:-Death-Process">Problem 1: Death Process<a class="anchor-link" href="#Problem-1:-Death-Process">¶</a></h1><hr/>
 <p>In this problem, we study a death process, which has the unique reaction $A \to \emptyset$ with rate constant $\delta$.</p>
-<p><strong>a)</strong> Write down an ODE describing the deterministic kinetics.</p>
+<p><strong>a)</strong> Write the ODE for the mean population.</p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+Each individual dies independently at rate $\delta$. The population decreases proportionally to the current population:
+$$
+\frac{d a}{dt} = - \delta a
+$$
+</div></details>
 <p><strong>b)</strong> Write down the Chemical Master Equation for the stochastic kinetics. Qualitatively compare the two.</p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+Let $P_n(t)$ be the probability that the population is $n$ at time $t$.  
+
+<ul>
+<li>From state $n$, any individual may die, so the transition rate $n \mapsto n-1$ is $n \cdot \delta$.</li>
+<li>From state $n+1$, we can transition to $n$ at rate $\delta \cdot (n+1)$.</li>
+</ul>
+<p><strong>CME:</strong><br/>
+$$
+\frac{dP_n}{dt} = \delta \cdot (n+1) \cdot P_{n+1} - \delta \cdot n \cdot P_n
+$$</p>
+</div></details>
 <p><strong>c)</strong> Find the expected value of the extinction time $T_0$ when starting from an initial population of $n$.</p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+Let $T_0(n)$ be the expected time to extinction from $n$ individuals.  
+
+<ul>
+<li>First event is a death with exponential waiting time mean $1/\delta n$.</li>
+<li>After the first death, the population is $n-1$.</li>
+</ul>
+<p><strong>Recurrence:</strong><br/>
+$$
+T_0(n) = \frac{1}{\delta n} + T_0(n-1), \quad T(0) = 0
+$$</p>
+</div></details>
 <p><strong>d)</strong> Find the variance of the extinction time $T_0$.</p>
-<p><strong>e)</strong> Consider two independent identical death processes, one for species $A$ starting at an initial population of $n_A$ and one for species $B$ starting at an initial population of $n_B$. Denoting by $T_A$ the extinction time of $A$ and by $T_B$ that of $B$, find (an estimation of) the probability that $T_A \leq T_B$.</p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+The extinction time is a sum of independent exponential waiting times with different rates: $1/\delta k$ for $k = n, n-1, \dots, 1$.  
+
+<ul>
+<li>Variance of an exponential with rate $\lambda$ is $1/\lambda^2$.</li>
+<li>Then sum the variances of each waiting time.</li></ul></div></details>
+
+
+<p><strong>e)</strong> Argue that $\mathbb{P}(T_0(n) \leq t) = (1 - e^{-\delta t})^n$.</p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+The lifespan of each of the $n$ individuals of the starting population is an independent exponential random variable with rate $\delta$.
+Then use the cumulative distribution function of the exponential distribution.
+</div></details>
+<p><strong>f)</strong> Find the derivative $\frac{d}{dt}\mathbb{P}(T_0(n) \leq t)$.</p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+<p>Use the <a href="https://en.wikipedia.org/wiki/Chain_rule">chain rule</a>.</p>
+</div></details>
+<p><strong>g)</strong> Consider two independent identical death processes, one for species $A$ starting at an initial population of $n_A$ and one for species $B$ starting at an initial population of $n_B$. Denoting by $T_A$ the extinction time of $A$ and by $T_B$ that of $B$, find (an estimation of) the probability that $T_A \leq T_B$.</p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+<p>Use the <a href="https://en.wikipedia.org/wiki/Law_of_total_probability#Continuous_case">law of total probability</a> and the fact that the derivative from part f) is the probability density function of $T_0(n)$.</p>
+</div></details>
 </div>
 </div>
 </div>
@@ -7544,21 +7622,57 @@ a.anchor-link {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h1 id="Problem-2:-Birth-and-Death-Process">Problem 2: Birth and Death Process<a class="anchor-link" href="#Problem-2:-Birth-and-Death-Process">¶</a></h1><hr/>
+<p>In this problem, we add a birth reaction to the death process from the previous problem, i.e., the reaction $A \to A + A$ with rate constant $\gamma$.</p>
+<p><strong>a)</strong> Write down an ODE describing the deterministic kinetics.</p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+Each individual can give birth ($+\gamma$) or die ($-\delta$):
+$$
+\frac{d a}{dt} = (\gamma - \delta) a
+$$
+</div></details>
+<p><strong>b)</strong> Write down the Chemical Master Equation for the stochastic kinetics. Qualitatively compare the two.</p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+Let $P_n(t)$ be the probability that the population is equal to $n$ at time $t$.
+
+<ul>
+<li>Transitions: $n \mapsto n+1$ at rate $\gamma n$ and $n \mapsto n-1$ at rate $\delta n$.</li>
+</ul>
+<p><strong>CME for $n \geq 1$:</strong><br/>
+$$
+\frac{dP_n}{dt} = \gamma (n-1) P_{n-1} + \delta (n+1) P_{n+1} - (\gamma+\delta) n P_n
+$$</p>
+</div></details>
+<p><strong>c)</strong> Let $q_n$ be the probability of extinction when starting from an initial population of $n$. Find a recursion formula for $q_n$.</p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+Condition on the first event (birth or death):
+$$
+q_n = \frac{\gamma}{\gamma+\delta} q_{n+1} + \frac{\delta}{\gamma+\delta} q_{n-1}, \quad q_0=1
+$$
+</div></details>
+<p><strong>d)</strong> Find a solution of the recusion formula for $q_n$.</p>
+<details class="spoiler"><summary>Show hint</summary>
+Make the ansatz $q_n = r^n$ for some $r\in [0,1]$ and solve the resulting quadratic equation. Then distinguish the cases $\gamma &gt; \delta$ and $\gamma \leq \delta$.
+
+<p>Intuition: when births are stronger than deaths, the population can "escape" extinction.</p>
+</details></div>
+<p><strong>e)</strong> For the case of almost-sure extinction, find the expected extinction time. Evaluate this formula for $n=1,2,3$.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>In this problem, we add a birth reaction to the death process from the previous problem, i.e., the reaction $A \to A + A$ with rate constant $\gamma$.</p>
-<p><strong>a)</strong> Write down an ODE describing the deterministic kinetics.</p>
-<p><strong>b)</strong> Write down the Chemical Master Equation for the stochastic kinetics. Qualitatively compare the two.</p>
-<p><strong>c)</strong> Find the probability of extinction when starting from an initial population of $n$.</p>
-<p><strong>d)</strong> For the case of almost-sure extinction, find the expected extinction time. Evaluate this formula for $n=1,2,3$.</p>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
 </div>
 </div>
 </div>
