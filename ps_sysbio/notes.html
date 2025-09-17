@@ -7312,6 +7312,7 @@ a.anchor-link {
                     processEnvironments: true
                 },
                 displayAlign: 'center',
+                messageStyle: 'none',
                 CommonHTML: {
                     linebreaks: {
                     automatic: true
@@ -7508,8 +7509,44 @@ a.anchor-link {
   }
 </style>
 <!-- End of mermaid configuration --></head>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    CommonHTML: { linebreaks: { automatic: false } }
+});
+MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+</script>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <main>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<style>
+details.spoiler {
+  display:inline;
+}
+details.spoiler summary {
+  display:inline;
+  cursor:pointer;
+  color:#0055aa;
+  text-decoration:underline;
+  margin-left:0.5em;
+}
+details.spoiler summary::marker {
+  display:none;
+}
+details.spoiler div {
+  display:block;
+  margin-left:1.5em;
+  color:#333;
+}
+</style>
+</div>
+</div>
+</div>
+</div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -7533,14 +7570,40 @@ a.anchor-link {
 </figure>
 <p>We parametrize the dynamics as follows.  Let $\beta_m$ be the unregulated mRNA production rate, $\gamma_m$ be the mRNA degradation rate constant, $\beta_p$ be the protein production rate constant, and $\gamma_p$ be the protein degradation rate constant.</p>
 <p><strong>a)</strong> Assuming mass action kinetics, write down mathematical expressions in the form of a system of coupled ODEs for the left figure (unregulated expression). Assume that this system exhibits no leakiness.</p>
+<details class="spoiler"><summary>Show hint</summary><div>
+<ul>
+<li>Use <strong>mass-action kinetics</strong> for mRNA and protein production/degradation.</li>
+<li>Write coupled ODEs:
+$$\frac{dm}{dt} = \beta_m - \gamma_m m$$
+$$\frac{dp}{dt} = \beta_p m - \gamma_p p$$</li>
+<li>Think of mRNA as produced at a constant rate and degraded proportionally to its concentration; same for protein.</li>
+</ul>
+</div>
+</details></div>
 <p><strong>b)</strong> Find the steady state mRNA concentration, $m_0$, and the steady state protein concentration, $p_0$, in terms of the given parameters.</p>
+<details class="spoiler"><summary>Show hint</summary><div>
+<ul>
+<li>Set derivatives to zero:
+$$0 = \beta_m - \gamma_m m_0 \implies m_0 = \frac{\beta_m}{\gamma_m}$$
+$$0 = \beta_p m_0 - \gamma_p p_0 \implies p_0 = \frac{\beta_p m_0}{\gamma_p}$$</li>
+</ul>
+</div></details>
 <p><strong>c)</strong> Now write down mathematical expressions in the form of a system of coupled ODEs for the right figure (negatively autoregulated expression). Assume that repression serves to decrease the mRNA production rate by a factor of $1/(1 + (p/k)^n)$, where $p$ is the protein concentration. This is a repressive Hill function with Hill coefficient $n$ and activation constant $k$. Again, assume that this system exhibits no leakiness.</p>
+<details class="spoiler"><summary>Show hint</summary><div>
+<p>Multiply the constant $\beta_m$ in the ODE by an repressing Hill function: $\frac{1}{1 + (p/k)^n}$.
+Think: as protein increases, mRNA production decreases.</p>
+</div></details>
 <p><strong>d)</strong> One of the ways we quantify the separation of time scales is by evaluating the ratio $\gamma = \gamma_p/\gamma_m$. Provide an argument why we may neglect the mRNA dynamics and consider only the protein if $\gamma \ll 1$.</p>
-<p><strong>e)</strong> Assume we initially have no mRNA or protein present. Suddenly, a cell needs to start producing the protein, so the gene is turned on at time $t = 0$.  Starting from initial conditions of $m(0) = p(0) = 0$, solve the ODEs (numerically or otherwise) for both the unregulated and autoregulated systems. You should choose parameters as would be typical for a bacterial cell. The excellent <a href="https://bionumbers.hms.harvard.edu/search.aspx">BioNumbers website</a> will be helpful. Plot the respective dimensionless mRNA and protein concentrations over time. Comment on the nature of the responses of the unregulated versus regulated circuit. Which has a faster response? How long does it take each to get to steady state?</p>
+<details class="spoiler"><summary>Show hint</summary><div>
+</div></details>
+<p><strong>e)</strong> Assume we initially have no mRNA or protein present. Suddenly, a cell needs to start producing the protein, so the gene is turned on at time $t = 0$.  Starting from initial conditions of $m(0) = p(0) = 0$, solve the ODEs (numerically or otherwise) for both the unregulated and autoregulated systems. You should choose parameters as would be typical for a bacterial cell. The excellent <a href="https://bionumbers.hms.harvard.edu/search.aspx">BioNumbers website</a> will be helpful. Plot the respective dimensionless mRNA and protein concentrations over time. Comment on the nature of the responses of the unregulated versus regulated circuit. Which has a faster response? How long does it take each
+to get to steady state?</p>
+<details class="spoiler"><summary>Show hint</summary><div>
+</div></details>
 </div>
 </div>
 </div>
-</div>
+
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -7563,8 +7626,14 @@ a.anchor-link {
 <img alt="autoactivator" src="autoactivator.png"/>
 </figure>
 <p><strong>a)</strong> Write down an ODE describing the dynamics of $x$. Include leakage parametrized by $\alpha$.</p>
+<details class="spoiler"><summary>Show hint</summary><div>
+</div></details>
 <p><strong>b)</strong> Show that for $n = 1$, only one steady state exists for $\alpha &gt; 0$. Show further that when $\alpha = 0$, two steady states may exist, but only one is stable.</p>
+<details class="spoiler"><summary>Show hint</summary><div>
+</div></details>
 <p><strong>c)</strong> In part (b), we considered the case where activation is not cooperative. We now consider the other extreme, where activation is infinitely cooperative. Derive the condition for bistability when $n\to\infty$.  In other words, for what parameter values does the circuit exhibit two stable steady states? Discuss this condition as it relates to design principles for bistability.</p>
+<details class="spoiler"><summary>Show hint</summary><div>
+</div></details>
 </div>
 </div>
 </div>
