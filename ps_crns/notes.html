@@ -7577,21 +7577,18 @@ $$
 \frac{dP_n}{dt} = \delta \cdot (n+1) \cdot P_{n+1} - \delta \cdot n \cdot P_n
 $$</p>
 </div></details>
-<p><strong>c)</strong> Find the expected value of the extinction time $T_0$ when starting from an initial population of $n$.</p>
+<p><strong>c)</strong> Find the expected value of the extinction time $T(n)$ when starting from an initial population of $n$.</p>
 <details class="spoiler"><summary>Show hint</summary>
 <div>
-Let $T_0(n)$ be the expected time to extinction from $n$ individuals.  
+- First event is a death with exponential waiting time mean $1/\delta n$.  
+- After the first death, the population is $n-1$.  
 
-<ul>
-<li>First event is a death with exponential waiting time mean $1/\delta n$.</li>
-<li>After the first death, the population is $n-1$.</li>
-</ul>
 <p><strong>Recurrence:</strong><br/>
 $$
-T_0(n) = \frac{1}{\delta n} + T_0(n-1), \quad T(0) = 0
+T(n) = \frac{1}{\delta n} + T(n-1), \quad T(0) = 0
 $$</p>
 </div></details>
-<p><strong>d)</strong> Find the variance of the extinction time $T_0$.</p>
+<p><strong>d)</strong> Find the variance of the extinction time $T(n)$.</p>
 <details class="spoiler"><summary>Show hint</summary>
 <div>
 The extinction time is a sum of independent exponential waiting times with different rates: $1/\delta k$ for $k = n, n-1, \dots, 1$.  
@@ -7601,13 +7598,13 @@ The extinction time is a sum of independent exponential waiting times with diffe
 <li>Then sum the variances of each waiting time.</li></ul></div></details>
 
 
-<p><strong>e)</strong> Argue that $\mathbb{P}(T_0(n) \leq t) = (1 - e^{-\delta t})^n$.</p>
+<p><strong>e)</strong> Argue that $\mathbb{P}(T(n) \leq t) = (1 - e^{-\delta t})^n$.</p>
 <details class="spoiler"><summary>Show hint</summary>
 <div>
 The lifespan of each of the $n$ individuals of the starting population is an independent exponential random variable with rate $\delta$.
 Then use the cumulative distribution function of the exponential distribution.
 </div></details>
-<p><strong>f)</strong> Find the derivative $\frac{d}{dt}\mathbb{P}(T_0(n) \leq t)$.</p>
+<p><strong>f)</strong> Find the derivative $\frac{d}{dt}\mathbb{P}(T(n) \leq t)$.</p>
 <details class="spoiler"><summary>Show hint</summary>
 <div>
 <p>Use the <a href="https://en.wikipedia.org/wiki/Chain_rule">chain rule</a>.</p>
@@ -7660,25 +7657,11 @@ $$
 </div></details>
 <p><strong>d)</strong> Find a solution of the recusion formula for $q_n$.</p>
 <details class="spoiler"><summary>Show hint</summary>
+<div>
 Make the ansatz $q_n = r^n$ for some $r\in [0,1]$ and solve the resulting quadratic equation. Then distinguish the cases $\gamma &gt; \delta$ and $\gamma \leq \delta$.
 
 <p>Intuition: when births are stronger than deaths, the population can "escape" extinction.</p>
-</details></div>
-<p><strong>e)</strong> For the case of almost-sure extinction, find the expected extinction time. Evaluate this formula for $n=1,2,3$.</p>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
+</div></details>
 </div>
 </div>
 </div>
