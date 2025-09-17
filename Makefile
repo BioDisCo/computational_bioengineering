@@ -8,7 +8,7 @@ DATADIRS = $(foreach dir,$(DIRS),$(dir)data)
 all: $(FIGDIRS) $(DATADIRS) $(HTMLS) $(ZIPS)
 
 %/notes.html: %/notes.ipynb
-	jupyter nbconvert --stdout --to=html $< > $@
+	jupyter nbconvert --stdout --to=html --template nbconvert_template $< > $@
 
 %/figs: %
 	mkdir -p $@
