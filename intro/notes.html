@@ -7509,6 +7509,12 @@ a.anchor-link {
   }
 </style>
 <!-- End of mermaid configuration --></head>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    CommonHTML: { linebreaks: { automatic: false } }
+});
+MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+</script>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <main>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7b7e327b-98f8-4606-9654-241996268c08">
@@ -7573,7 +7579,7 @@ We will install several libraries and a virtual environment helps to not interfe
 
 <span class="c1"># configure notebook figures</span>
 <span class="c1"># remove it in case you run it as stand-alone code</span>
-<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
 </pre></div>
 </div>
 </div>
