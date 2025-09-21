@@ -7569,7 +7569,7 @@ The parameter $\alpha$ is called the reaction's <em>rate constant</em>.</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="From-Molecular-Collisions-to-Mass-Action-Kinetics">From Molecular Collisions to Mass-Action Kinetics<a class="anchor-link" href="#From-Molecular-Collisions-to-Mass-Action-Kinetics">¶</a></h2><p>We often write down chemical reactions like A + B → C and then we say the rate is proportional to [A][B]. But why should it be true? Why should the rate depend on the <em>product</em> of the concentrations? Why not the sum, or some other combination?</p>
+<h2 id="From-Molecular-Collisions-to-Mass-Action-Kinetics">From Molecular Collisions to Mass-Action Kinetics<a class="anchor-link" href="#From-Molecular-Collisions-to-Mass-Action-Kinetics">¶</a></h2><p>We often write down chemical reactions like A + B → C and then we say the rate is proportional to the product $A\cdot B$. But why should it be true? Why should the rate depend on the <em>product</em> of the concentrations? Why not the sum, or some other combination?</p>
 <p>The answer, as it turns out, comes from a very simple physical picture: molecules bouncing around and occasionally bumping into each other. Let's see if we can understand this from the ground up.</p>
 <h3 id="The-Essential-Physics:-Collisions-with-Activation">The Essential Physics: Collisions with Activation<a class="anchor-link" href="#The-Essential-Physics:-Collisions-with-Activation">¶</a></h3><p>When we say that A and B react to form C, what we really mean is something quite specific. Two molecules, one of type A and one of type B, have to get close enough to each other that they can rearrange their chemical bonds. But it's not enough for them just to touch gently — they need to collide with enough energy to get over what we call the "activation energy barrier."</p>
 <p>Think of it like this: imagine you're trying to push a boulder over a hill. You can't just nudge it gently; you need to hit it hard enough to get it to the top. Once it's over the top, it rolls down the other side (that's your product C forming). But if you don't hit it hard enough, it just rolls back to where it started.</p>
@@ -7632,9 +7632,10 @@ $$\lambda \propto \frac{r v}{A}$$</p>
 $$P(\text{avoid all for time } t) = e^{-\lambda_1 t} \cdot e^{-\lambda_2 t} \cdots e^{-\lambda_n t} = e^{-(\lambda_1 + \cdots + \lambda_n)t}$$</p>
 <p>This is exactly the survival function of an exponential with rate $\lambda_1 + \cdots + \lambda_n$.</p>
 <h3 id="The-Rate-Addition-Rule">The Rate Addition Rule<a class="anchor-link" href="#The-Rate-Addition-Rule">¶</a></h3><p>If each individual B molecule gives a collision rate of $\lambda_1$ (which is proportional to $r/A$ from our earlier calculation), then $n_B$ identical B molecules give a total collision rate of:
-$$\lambda_{\text{total}} = n_B \cdot \lambda_1 \propto \frac{n_B}{A}$$</p>
+$$\lambda_{\text{total}} = n_B \cdot \lambda_1 \propto \frac{n_B}{V}$$
+where $V$ is the (3-dimensional) volume.</p>
 <p>But by the same reasoning, if we have $n_A$ different A molecules that could each hit the B molecules, the total rate becomes:
-$$\lambda_{\text{total}} \propto \frac{n_A \cdot n_B}{A}$$</p>
+$$\lambda_{\text{total}} \propto \frac{n_A \cdot n_B}{V}$$</p>
 <h3 id="The-Bigger-Picture">The Bigger Picture<a class="anchor-link" href="#The-Bigger-Picture">¶</a></h3><p>This derivation shows us something profound: the macroscopic law of mass-action kinetics emerges naturally from the microscopic physics of molecular motion. We don't need to postulate it; we can derive it from first principles.</p>
 <p>Of course, real chemistry is more complicated. Molecules aren't hard spheres, they have complex shapes, reactions need activation energy, there might be spatial correlations... But the basic scaling law — the product rule — survives all these complications for elementary reactions.</p>
 <p>This is the beauty of statistical mechanics: simple microscopic rules lead to universal macroscopic behavior. The same ideas we've used here apply to everything from chemical reactions to stellar collisions to radioactive decay.</p>
