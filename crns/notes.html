@@ -7611,7 +7611,7 @@ $$P(\text{hit in next } t | \text{no hit in last } s) = P(\text{hit in first } t
 <p>The shadow region is roughly a circle of radius $r + v \cdot s$ around the target. Any point in this region that was moving toward the target would have collided within time $s$.</p>
 <p>This means the position distribution is not uniform anymore — it's uniform everywhere except in the shadow. So the system is not perfectly memoryless.</p>
 <p>However, if the target is very small ($r \to 0$), then the shadow region becomes very small compared to the total area. In this limit, the distortion of the uniform distribution is negligible, and the system becomes approximately memoryless.</p>
-<h3 id="The-Exponential-Distribution">The Exponential Distribution<a class="anchor-link" href="#The-Exponential-Distribution">¶</a></h3><p>If a system is truly memoryless, then its waiting times must follow an exponential distribution. This is a <a href="https://en.wikipedia.org/wiki/Exponential_distribution#Memorylessness_property_of_exponential_random_variable">theorem</a>, not just a guess.</p>
+<h3 id="The-Exponential-Distribution">The Exponential Distribution<a class="anchor-link" href="#The-Exponential-Distribution">¶</a></h3><p>If a system is truly memoryless, then its waiting times must follow an exponential distribution. This is a <a href="https://en.wikipedia.org/wiki/Memorylessness#Characterization_of_exponential_distribution">theorem</a>, not just a guess.</p>
 <p>The exponential distribution with rate $\lambda$ is characterized by:</p>
 <p>$$P(\text{wait time} &gt; t) = e^{-\lambda t}$$</p>
 <p>This is the "survival function" of the exponential distribution. The probability density function is $\lambda e^{-\lambda t}$, and the expected value is $1/\lambda$.</p>
