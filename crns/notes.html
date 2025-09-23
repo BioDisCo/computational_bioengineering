@@ -7712,12 +7712,12 @@ Care has to be taken at the boundaries, e.g., if $m = 1$ or $m = 0$.</p>
 Then, by letting $\Delta t \to 0$, it is</p>
 <p>\begin{align}
 \frac{\mathrm{d}P(m,p,t)}{\mathrm{d}t}  &amp;= \beta_m P(m-1,p,t) &amp; \text{(from left)}\\
-                                        &amp;+ (m+1)P(m+1,p,t) &amp; \text{(from right)}\\
+                                        &amp;+ \gamma_m (m+1)P(m+1,p,t) &amp; \text{(from right)}\\
                                         &amp;+\beta_p mP(m,p-1,t) &amp; \text{(from bottom)}\\
-                                        &amp;+ \gamma (p+1)P(m,p+1,t) &amp;\text{(from top)}\\
-                                        &amp;- mP(m,p,t) &amp; \text{(to left)}\\
+                                        &amp;+ \gamma_p (p+1)P(m,p+1,t) &amp;\text{(from top)}\\
+                                        &amp;- \gamma_m mP(m,p,t) &amp; \text{(to left)}\\
                                         &amp;- \beta_m P(m,p,t) &amp; \text{(to right)}\\
-                                        &amp;- \gamma p P(m,p,t) &amp;\text{(to bottom)}\\
+                                        &amp;- \gamma_p p P(m,p,t) &amp;\text{(to bottom)}\\
                                         &amp;- \beta_p mP(m,p,t)\enspace. &amp; \text{(to top)}
 \end{align}</p>
 <p>We implicitly define $P(m, p, t) = 0$ if $m &lt; 0$ or $p &lt; 0$. This is the master equation we will sample from using the stochastic simulation algorithm (SSA) also called Gillespie algorithm.</p>
