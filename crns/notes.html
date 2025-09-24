@@ -7763,9 +7763,9 @@ Its effect is subtracting $\mathbf{r}(s)$ from the count of species $s$ and addi
 \begin{array}{ll}
 \text{reaction, }r_i &amp; \text{propensity, } a_i \\
 m \rightarrow m+1,\;\;\;\; &amp; \beta_m \\[0.3em]
-m \rightarrow m-1, \;\;\;\; &amp; m\\[0.3em]
+m \rightarrow m-1, \;\;\;\; &amp; \gamma_m m\\[0.3em]
 p \rightarrow p+1, \;\;\;\; &amp; \beta_p m \\[0.3em]
-p \rightarrow p-1, \;\;\;\; &amp; \gamma p\enspace.
+p \rightarrow p-1, \;\;\;\; &amp; \gamma_p p\enspace.
 \end{array}
 \end{align}</p>
 <p>We will not carefully prove that the Gillespie algorithm samples from the probability distribution governed by the master equation, but will state the principles behind it.  The basic idea is that events (such as those outlined above) are rare, discrete, separate events.  I.e., each event is an arrival of a Poisson process.  The Gillespie algorithm starts with some state, $(m_0,p_0)$.  Then a state change, <em>any</em> state change, will happen in some time $\Delta t$ that has a certain probability distribution (which we will show is exponential momentarily).</p>
