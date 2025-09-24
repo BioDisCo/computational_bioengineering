@@ -8,9 +8,7 @@ from enum import Enum
 from typing import TypedDict
 
 import matplotlib.pyplot as plt
-import numpy as np
 import pygame
-from scipy import stats
 
 
 type Color = tuple[int, int, int]
@@ -192,8 +190,8 @@ class ParticleCollider:
                     vy: float = self.speed * math.sin(angle)
                 else:
                     # Use random velocity components
-                    vx: float = random.uniform(-50, 50)
-                    vy: float = random.uniform(-50, 50)
+                    vx = random.uniform(-50, 50)
+                    vy = random.uniform(-50, 50)
 
                 particle: Particle = Particle(
                     x, y, vx, vy, ptype["radius"], ptype["color"], ptype["type"]
@@ -210,8 +208,8 @@ class ParticleCollider:
             return math.sqrt(dx * dx + dy * dy)
         else:
             # Periodic distance calculation
-            dx: float = abs(p1.x - p2.x)
-            dy: float = abs(p1.y - p2.y)
+            dx = abs(p1.x - p2.x)
+            dy = abs(p1.y - p2.y)
 
             # Handle periodic boundaries
             dx = min(dx, self.width - dx)
@@ -412,7 +410,9 @@ class ParticleCollider:
 
             nearby: list[Particle] = self.grid.get_nearby_particles(particle)
             for other in nearby:
-                if particle is not other and id(other) not in particles_already_removed:
+                if (particle is not other and
+                    id(other) not in particles_already_removed and
+                    id(particle) not in particles_already_removed):
                     pair: tuple[int, int] = tuple(sorted([id(particle), id(other)]))
                     if pair not in checked_pairs:
                         checked_pairs.add(pair)
@@ -500,7 +500,7 @@ class ParticleCollider:
         current_time: float = 0.0
 
         while running:
-            dt: float = self.clock.tick(60) / 1000.0
+            dt = self.clock.tick(60) / 1000.0
             current_time += dt
 
             # Check if max duration reached
@@ -586,282 +586,6 @@ class ParticleCollider:
         p2.vy -= impulse * p1.mass * ny
 
 
-def hit_times(
-    N: int = 1000,
-    max_time: float = 2000,
-    fixed_speed=50.0,
-    boundary_type: BoundaryType = BoundaryType.PERIODIC,
-    show_animation: bool = True,
-) -> None:
-    particle_type_static = "huge"
-    particle_type_move = "huge"
-
-    hit_times_list = []
-
-    for i in range(N):
-        print(f"Running simulation {i + 1}/{N}...")
-
-        # Create collider with no particles initially
-        collider = ParticleCollider(particle_counts={}, boundary_type=boundary_type)
-
-        # Initialize particle_type_static ball at center
-        #
-        # NOTE:
-        # finally we made it not so static, to get an exp
-        # with static it looks exp-like but can be rejected as not being
-        angle_static = random.uniform(0, 2 * math.pi)
-        vx_static = fixed_speed * math.cos(angle_static)
-        vy_static = fixed_speed * math.sin(angle_static)
-
-        static_particle = Particle(
-            x=collider.width / 2,
-            y=collider.height / 2,
-            vx=vx_static,
-            vy=vy_static,
-            radius=PARTICLE_TYPES[particle_type_static]["radius"],
-            color=PARTICLE_TYPES[particle_type_static]["color"],
-            particle_type=particle_type_static,
-        )
-
-        # Initialize particle_type_move ball at random position with random direction
-        x = random.uniform(
-            PARTICLE_TYPES[particle_type_move]["radius"],
-            collider.width - PARTICLE_TYPES[particle_type_move]["radius"],
-        )
-        y = random.uniform(
-            PARTICLE_TYPES[particle_type_move]["radius"],
-            collider.height - PARTICLE_TYPES[particle_type_move]["radius"],
-        )
-
-        # Random direction with fixed speed
-        angle = random.uniform(0, 2 * math.pi)
-        vx = fixed_speed * math.cos(angle)
-        vy = fixed_speed * math.sin(angle)
-
-        moving_particle = Particle(
-            x=x,
-            y=y,
-            vx=vx,
-            vy=vy,
-            radius=PARTICLE_TYPES[particle_type_move]["radius"],
-            color=PARTICLE_TYPES[particle_type_move]["color"],
-            particle_type=particle_type_move,
-        )
-
-        collider.particles = [static_particle, moving_particle]
-
-        # Run simulation until collision
-        current_time = 0.0
-        collision_detected = False
-
-        if show_animation and i == 0:
-            # Show animation for the first simulation only
-            pygame.init()
-            screen = pygame.display.set_mode((collider.width, collider.height))
-            pygame.display.set_caption(f"Hit Time Animation - {boundary_type.value}")
-            clock = pygame.time.Clock()
-
-            running = True
-            while running and current_time < max_time and not collision_detected:
-                dt = clock.tick(60) / 1000.0
-                current_time += dt
-
-                # Handle events
-                for event in pygame.event.get():
-                    if event.type == pygame.QUIT:
-                        running = False
-                    elif event.type == pygame.KEYDOWN:
-                        if event.key == pygame.K_ESCAPE:
-                            running = False
-
-                # Update particles
-                for particle in collider.particles:
-                    particle.update(
-                        dt, collider.width, collider.height, collider.boundary_type
-                    )
-
-                # Check for collision
-                distance = collider.distance_periodic(static_particle, moving_particle)
-                if distance < (static_particle.radius + moving_particle.radius):
-                    hit_times_list.append(current_time)
-                    collision_detected = True
-                    print(f"Collision detected at time {current_time:.3f}s in animation!")
-
-                # Draw
-                screen.fill((20, 20, 20))
-                for particle in collider.particles:
-                    pygame.draw.circle(
-                        screen,
-                        particle.color,
-                        (int(particle.x), int(particle.y)),
-                        particle.radius,
-                    )
-
-                # Draw time and other info
-                font = pygame.font.Font(None, 36)
-                time_text = font.render(f"Time: {current_time:.2f}s", True, (255, 255, 255))
-                screen.blit(time_text, (10, 10))
-
-                boundary_text = font.render(f"Boundary: {boundary_type.value}", True, (255, 255, 255))
-                screen.blit(boundary_text, (10, 50))
-
-                pygame.display.flip()
-
-            pygame.quit()
-
-            if not collision_detected:
-                print(f"Warning: No collision detected in animation within {max_time}s")
-
-        else:
-            # Fast simulation without animation
-            dt = 1/ 60
-            while current_time < max_time and not collision_detected:
-                current_time += dt
-
-                # Update particles
-                for particle in collider.particles:
-                    particle.update(
-                        dt, collider.width, collider.height, collider.boundary_type
-                    )
-
-                # Check for collision
-                distance = collider.distance_periodic(static_particle, moving_particle)
-                if distance < (static_particle.radius + moving_particle.radius):
-                    hit_times_list.append(current_time)
-                    collision_detected = True
-
-            if not collision_detected:
-                print(
-                    f"Warning: No collision detected in simulation {i + 1} within {max_time}s"
-                )
-
-    # Save to CSV
-    with open("hit_times.csv", "w", newline="") as csvfile:
-        writer = csv.writer(csvfile)
-        writer.writerow(["hit_time"])
-        for hit_time in hit_times_list:
-            writer.writerow([hit_time])
-
-    # Fit exponential distribution
-    hit_times_array = np.array(hit_times_list)
-
-    # Fit exponential distribution (scipy uses scale parameter, not rate)
-    # For exponential: f(x) = (1/scale) * exp(-x/scale), where scale = 1/lambda
-    loc, scale = stats.expon.fit(hit_times_array, floc=0)  # floc=0 fixes location at 0
-    lambda_param = 1 / scale  # rate parameter
-
-    # Perform Kolmogorov-Smirnov test for exponential distribution
-    ks_statistic, ks_p_value = stats.kstest(
-        hit_times_array, lambda x: stats.expon.cdf(x, loc=loc, scale=scale)
-    )
-
-    # Create two subplots: histogram and CDF comparison
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 6))
-
-    # Subplot 1: Histogram with fitted exponential overlay
-    n, bins, patches = ax1.hist(
-        hit_times_list,
-        bins=100,
-        alpha=0.7,
-        edgecolor="black",
-        density=True,
-        label="Observed data",
-    )
-
-    # Fitted exponential curve
-    x_fit = np.linspace(0, max(hit_times_list), 1000)
-    y_fit = stats.expon.pdf(x_fit, loc=loc, scale=scale)
-    ax1.plot(
-        x_fit,
-        y_fit,
-        "r-",
-        linewidth=2,
-        label=f"Fitted Exponential (λ={lambda_param:.4f})",
-    )
-
-    ax1.set_xlabel("Hit Time (seconds)")
-    ax1.set_ylabel("Density")
-    ax1.set_title(
-        f"PDF: Hit Times with Exponential Fit\nN={len(hit_times_list)} collisions"
-    )
-    ax1.legend()
-    ax1.grid(True, alpha=0.3)
-
-    # Subplot 2: CDF comparison
-    # Empirical CDF
-    sorted_data = np.sort(hit_times_array)
-    empirical_cdf = np.arange(1, len(sorted_data) + 1) / len(sorted_data)
-    ax2.plot(sorted_data, empirical_cdf, "b-", linewidth=2, label="Empirical CDF")
-
-    # Theoretical exponential CDF
-    theoretical_cdf = stats.expon.cdf(sorted_data, loc=loc, scale=scale)
-    ax2.plot(
-        sorted_data,
-        theoretical_cdf,
-        "r-",
-        linewidth=2,
-        label=f"Exponential CDF (λ={lambda_param:.4f})",
-    )
-
-    ax2.set_xlabel("Hit Time (seconds)")
-    ax2.set_ylabel("Cumulative Probability")
-    ax2.set_title(f"CDF Comparison\nKS statistic = {ks_statistic:.4f}")
-    ax2.legend()
-    ax2.grid(True, alpha=0.3)
-
-    plt.tight_layout()
-    plt.show()
-
-    print(f"Mean hit time: {sum(hit_times_list) / len(hit_times_list):.3f}s")
-    print(f"Successful collisions: {len(hit_times_list)}/{N}")
-    print(f"Fitted exponential rate parameter (λ): {lambda_param:.6f}")
-    print(f"Theoretical mean (1/λ): {1 / lambda_param:.3f}s")
-
-    print("\nKolmogorov-Smirnov test for exponential distribution:")
-    print(f"KS statistic: {ks_statistic:.6f}")
-    print(f"p-value: {ks_p_value:.6f}")
-    if ks_p_value > 0.05:
-        print("✓ Cannot reject exponential distribution hypothesis (p > 0.05)")
-    else:
-        print("✗ Reject exponential distribution hypothesis (p ≤ 0.05)")
-
-
-def sweep(boundary_type: BoundaryType = BoundaryType.PERIODIC) -> None:
-    x = []
-    y = []
-
-    # time for measuring
-    T = 10
-    for small_count in range(1, 1000, 100):
-        particle_counts = {"small": small_count, "medium": 5}
-        collider: ParticleCollider = ParticleCollider(
-            particle_counts=particle_counts, boundary_type=boundary_type
-        )
-        collision_count = collider.run(
-            max_duration=T,
-            track_collision_pair=("small", "medium"),
-            relaxation_time=2.0,
-        )
-        x.append(small_count)
-        if collision_count is not None:
-            y.append(collision_count / particle_counts["medium"])
-        else:
-            y.append(0)
-    # Save to CSV
-    with open("collision_data.csv", "w", newline="") as csvfile:
-        writer = csv.writer(csvfile)
-        writer.writerow(["num_medium_particles", "collision_count"])
-        for i, time_val in zip(x, y):
-            writer.writerow([i, time_val])
-
-    # Plot the data
-    plt.figure(figsize=(10, 6))
-    plt.plot(x, y, "bo-", linewidth=2, markersize=8)
-    plt.xlabel("Number of Medium Particles")
-    plt.ylabel("Total Collision Count")
-    plt.title("Collision Count vs Number of Medium Particles")
-    plt.grid(True, alpha=0.3)
-    plt.show()
 
 
 def plot_reactions(species: list[str] | None = None, filename: str = "reactions.csv") -> None:
@@ -909,7 +633,7 @@ def plot_reactions(species: list[str] | None = None, filename: str = "reactions.
                 particle_color = PARTICLE_TYPES[ptype]['color']
                 plot_color = tuple(c / 255.0 for c in particle_color)  # Convert RGB 0-255 to 0-1
             else:
-                plot_color = 'gray'  # Fallback color
+                plot_color = (50, 50, 50)  # Fallback color
 
             plt.plot(times, counts, color=plot_color, linewidth=2,
                     label=f'{ptype.upper()} particles', marker='o', markersize=3, alpha=0.8)
@@ -975,20 +699,6 @@ def reactions(boundary_type: BoundaryType = BoundaryType.PERIODIC) -> None:
 
 
 if __name__ == "__main__":
-    # boundary_type = BoundaryType.PERIODIC
     boundary_type = BoundaryType.REFLECTIVE
-
-    # Example 0: video
-    # particle_counts = {"small": 3, "huge": 1, "medium": 10}
-    # collider: ParticleCollider = ParticleCollider(particle_counts=particle_counts, boundary_type=boundary_type)
-    # collider.run(max_duration=20.0, track_collision_pair=("small", "huge"))
-
-    # Example 1: show almost exp hit time
-    # hit_times(boundary_type=boundary_type)
-
-    # Example 2: show linearity of number of collisions
-    # sweep(boundary_type=boundary_type)
-
-    # Example 3: reaction system
     reactions(boundary_type=boundary_type)
     plot_reactions(["A", "B"])
