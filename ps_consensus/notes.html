@@ -7312,6 +7312,7 @@ a.anchor-link {
                     processEnvironments: true
                 },
                 displayAlign: 'center',
+                messageStyle: 'none',
                 CommonHTML: {
                     linebreaks: {
                     automatic: true
@@ -7508,6 +7509,12 @@ a.anchor-link {
   }
 </style>
 <!-- End of mermaid configuration --></head>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    CommonHTML: { linebreaks: { automatic: false } }
+});
+MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+</script>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <main>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
@@ -7516,7 +7523,44 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Problem-1:-Non-Self-Destructive-Interactions">Problem 1: Non-Self-Destructive Interactions<a class="anchor-link" href="#Problem-1:-Non-Self-Destructive-Interactions">¶</a></h1><hr/>
+<h1 id="Problem-1:-Self-Destructive-Interactions">Problem 1: Self-Destructive Interactions<a class="anchor-link" href="#Problem-1:-Self-Destructive-Interactions">¶</a></h1><hr/>
+<p>We discussed in the lecture a simple distributed algorithm / CRN with the only reaction being</p>
+<p>$$
+A + B \rightarrow \emptyset
+$$</p>
+<p><strong>a)</strong> Write a formula for the expected time until consensus is reached assuming the system starts at $A_0 &gt; B_0$.</p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+Each, A and B, decreases simultaneously by 1 at rate
+
+<p>$$
+\delta A B
+$$</p>
+<p>Assuming the population starts at $A_0 &gt; B_0$, it traverses the states $(A_0 - k, B_0 - k)$ for $0 \leq k \leq B_0$.
+Each of the decrements follows an exponential distribution and the decrements are independent from each other.</p>
+</div></details>
+<p><strong>b)</strong> For a fixed $B_0$ that is the minimum of $A_0$ and $B_0$, what is the $A_0 \geq B_0$ that has the worst-case (maximal) time until consensus.</p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+Take the formula you derived in (a) and study when the terms
+
+<p>$$
+\frac{1}{\delta (A_0-k)(B_0-k)}
+$$</p>
+<p>are maximal for $A_0$ given that $A_0 \geq B_0$.</p>
+</div></details>
+<p><strong>c)</strong> Given the outcomes from (a) and (b), use the bound in (b) to show that the expected time until consensus is in $O(1)$.</p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+<p>Using bound (b), proceed with</p>
+<p>$$
+\frac{1}{\delta (A_0-k)(B_0-k)} \leq \frac{1}{\delta (B_0-k)^2}
+$$</p>
+<p>and reformulate to bound with</p>
+<p>$$
+\sum_{m=1}^{\infty}\frac{1}{m^2}
+$$</p>
+</div></details>
 </div>
 </div>
 </div>
@@ -7527,6 +7571,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Problem-1:-Non-Self-Destructive-Interactions">Problem 1: Non-Self-Destructive Interactions<a class="anchor-link" href="#Problem-1:-Non-Self-Destructive-Interactions">¶</a></h1><hr/>
 <p>In this problem, we study the Pairwise Annihilation protocol with non-self-destructive interactions. That is, we replace the reaction $A+B \to \emptyset$ by the two reactions $A+B\to A$ and $A+B \to B$ (both with rate constant $\delta/2$).</p>
 <p>How does this change affect the probability of achieving majority consensus? All ways of tackling this problem are fair game, in particular analytical reasoning, simulation, and experimentation.</p>
 </div>
@@ -7540,16 +7585,6 @@ a.anchor-link {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h1 id="Problem-2:-No-Interaction">Problem 2: No Interaction<a class="anchor-link" href="#Problem-2:-No-Interaction">¶</a></h1><hr/>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>In this problem, we study two parallel bacterial colonies without interaction. For this, we add the individual death reactions $A \to \emptyset$ and $B \to \emptyset$ for each of the two species (both with an identical rate constant $\delta$).</p>
 <p>How does this change affect the probability of achieving majority consensus? All ways of tackling this problem are fair game, in particular analytical reasoning, simulation, and experimentation.</p>
 </div>
@@ -7563,16 +7598,6 @@ a.anchor-link {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h1 id="Problem-3:-Biological-Implementation-via-Conjugation">Problem 3: Biological Implementation via Conjugation<a class="anchor-link" href="#Problem-3:-Biological-Implementation-via-Conjugation">¶</a></h1><hr/>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>In this problem, we want to model and simulate a plausible biological implementation of the Pairwise Annihilation protocol. For that, we will assume:</p>
 <ul>
 <li>individual birth and death reactions</li>
