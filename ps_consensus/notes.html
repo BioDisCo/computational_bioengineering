@@ -7571,9 +7571,39 @@ $$</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Problem-1:-Non-Self-Destructive-Interactions">Problem 1: Non-Self-Destructive Interactions<a class="anchor-link" href="#Problem-1:-Non-Self-Destructive-Interactions">¶</a></h1><hr/>
+<h1 id="Problem-2:-Unbiased-Random-Walk-Hitting-0">Problem 2: Unbiased Random Walk Hitting 0<a class="anchor-link" href="#Problem-2:-Unbiased-Random-Walk-Hitting-0">¶</a></h1><hr/>
+<p>Assume we start at a $k \geq 0$. If $k = 0$, we are done. If not, we move left to $k-1$ with probability $1/2$ and right to $k+1$ with $1/2$.</p>
+<p><strong>a)</strong> Show that this random walk hits $0$ with probability $1$.</p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+You can use a symmetry argument. For any position $k$ the probability of hitting $0$ and $2k$ is identical by symmetry. Further, one can show that it must sum up to $1$ (the probability it always stays within 1 and $2k-1$ is 0.) Thus both must be $1/2$.
+
+<p>Repeat this argument.</p>
+</div></details>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Problem-3:-Non-Self-Destructive-Interactions">Problem 3: Non-Self-Destructive Interactions<a class="anchor-link" href="#Problem-3:-Non-Self-Destructive-Interactions">¶</a></h1><hr/>
 <p>In this problem, we study the Pairwise Annihilation protocol with non-self-destructive interactions. That is, we replace the reaction $A+B \to \emptyset$ by the two reactions $A+B\to A$ and $A+B \to B$ (both with rate constant $\delta/2$).</p>
-<p>How does this change affect the probability of achieving majority consensus? All ways of tackling this problem are fair game, in particular analytical reasoning, simulation, and experimentation.</p>
+<p>How does this change affect the probability of achieving majority consensus? All ways of tackling this problem are fair game, in particular analytical reasoning, simulation, and thought experiments with proof ideas.</p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+For simulation: Change the MobsPy code to the given reactions and compare the results.
+
+<p>For analysis and thought experiments: The random choice which of the two species dies behaves like an unbiased coin. Each coin flip has the possibility to decrease or increase the difference by $1$.
+Consider how many coin flips are needed for the majority to win (at least, there may be more in fact). Now check how likely it is for such many coin flips to reverse the order of A and B for a given gap $A-B$.</p>
+</div></details>
+<details class="spoiler"><summary>More hints</summary>
+<div>
+For analysis and thought experiments: Take a look at the Binomial distribution (approximated well by the Normal distribution for large $n$).
+</div></details>
 </div>
 </div>
 </div>
@@ -7584,20 +7614,7 @@ $$</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Problem-2:-No-Interaction">Problem 2: No Interaction<a class="anchor-link" href="#Problem-2:-No-Interaction">¶</a></h1><hr/>
-<p>In this problem, we study two parallel bacterial colonies without interaction. For this, we add the individual death reactions $A \to \emptyset$ and $B \to \emptyset$ for each of the two species (both with an identical rate constant $\delta$).</p>
-<p>How does this change affect the probability of achieving majority consensus? All ways of tackling this problem are fair game, in particular analytical reasoning, simulation, and experimentation.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Problem-3:-Biological-Implementation-via-Conjugation">Problem 3: Biological Implementation via Conjugation<a class="anchor-link" href="#Problem-3:-Biological-Implementation-via-Conjugation">¶</a></h1><hr/>
+<h1 id="Problem-4:-Biological-Implementation-via-Conjugation">Problem 4: Biological Implementation via Conjugation<a class="anchor-link" href="#Problem-4:-Biological-Implementation-via-Conjugation">¶</a></h1><hr/>
 <p>In this problem, we want to model and simulate a plausible biological implementation of the Pairwise Annihilation protocol. For that, we will assume:</p>
 <ul>
 <li>individual birth and death reactions</li>
@@ -7608,7 +7625,18 @@ $$</p>
 <li>a realistic conjugation rate for <em>E. coli</em>, taken from <a href="https://www.cell.com/biophysj/fulltext/S0006-3495(11">this paper</a>00577-7) for example</li>
 </ul>
 <p>Some rates and parameters are missing from the above list. Try to find estimations for them on your own (sources are abound).</p>
-<p>Analyze the model you came up with via simulation.</p>
+<p><strong>a)</strong> How would you design the genetic constructs?</p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+Think of it as a genetic circuit as we had it in the first lecture. You do not need to specify the parts, but what would be expressed and what does this activate/repress.
+</div></details>
+<p><strong>b)</strong> Analyze the model you came up with via simulation.</p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+Copy the MobsPy model from the lecture and modify it accordingly.
+First plot the behavior over time to get a feeling for its plausibility.
+Then check if you can reproduce the S-shaped probability curve from the lecture with this model.
+</div></details>
 </div>
 </div>
 </div>
