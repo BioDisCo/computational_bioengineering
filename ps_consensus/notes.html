@@ -7523,7 +7523,29 @@ MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Problem-1:-Self-Destructive-Interactions">Problem 1: Self-Destructive Interactions<a class="anchor-link" href="#Problem-1:-Self-Destructive-Interactions">¶</a></h1><hr/>
+<h1 id="Problem-1:-Unbiased-Random-Walk-Hitting-0">Problem 1: Unbiased Random Walk Hitting 0<a class="anchor-link" href="#Problem-1:-Unbiased-Random-Walk-Hitting-0">¶</a></h1><hr/>
+<p>In the CRN Problem Session, Problem 2, we studied a birth-death process. This can be seen as a random walk on the natural numbers.</p>
+<p>Here, we want you to use a simple and powerful argument that sometimes works.
+Assume we start at a $k \geq 0$. If $k = 0$, we are done. If not, we move left to $k-1$ with probability $1/2$ and right to $k+1$ with $1/2$.
+This is called an unbiased random walk on the line with adsorption at $0$.</p>
+<p><strong>a)</strong> Show that this random walk hits $0$ with probability $1$ repeatedly using symmetry arguments (going left is as likely as going right for the same distance).</p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+For any position $k$ the probability of hitting $0$ and $2k$ is identical by symmetry. Further, one can show that it must sum up to $1$ (the probability it always stays within 1 and $2k-1$ is 0.) Thus both must be $1/2$.
+
+<p>Repeat this argument.</p>
+</div></details>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Problem-2:-Self-Destructive-Interactions">Problem 2: Self-Destructive Interactions<a class="anchor-link" href="#Problem-2:-Self-Destructive-Interactions">¶</a></h1><hr/>
 <p>We discussed in the lecture a simple distributed algorithm / CRN with the only reaction being</p>
 <p>$$
 A + B \rightarrow \emptyset
@@ -7560,25 +7582,6 @@ $$</p>
 <p>$$
 \sum_{m=1}^{\infty}\frac{1}{m^2}
 $$</p>
-</div></details>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Problem-2:-Unbiased-Random-Walk-Hitting-0">Problem 2: Unbiased Random Walk Hitting 0<a class="anchor-link" href="#Problem-2:-Unbiased-Random-Walk-Hitting-0">¶</a></h1><hr/>
-<p>Assume we start at a $k \geq 0$. If $k = 0$, we are done. If not, we move left to $k-1$ with probability $1/2$ and right to $k+1$ with $1/2$.</p>
-<p><strong>a)</strong> Show that this random walk hits $0$ with probability $1$.</p>
-<details class="spoiler"><summary>Show hint</summary>
-<div>
-You can use a symmetry argument. For any position $k$ the probability of hitting $0$ and $2k$ is identical by symmetry. Further, one can show that it must sum up to $1$ (the probability it always stays within 1 and $2k-1$ is 0.) Thus both must be $1/2$.
-
-<p>Repeat this argument.</p>
 </div></details>
 </div>
 </div>
