@@ -7312,6 +7312,7 @@ a.anchor-link {
                     processEnvironments: true
                 },
                 displayAlign: 'center',
+                messageStyle: 'none',
                 CommonHTML: {
                     linebreaks: {
                     automatic: true
@@ -7508,6 +7509,12 @@ a.anchor-link {
   }
 </style>
 <!-- End of mermaid configuration --></head>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    CommonHTML: { linebreaks: { automatic: false } }
+});
+MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+</script>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <main>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
