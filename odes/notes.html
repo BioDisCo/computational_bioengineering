@@ -7544,7 +7544,7 @@ $$\frac{dy}{dt} = -cy + dxy$$</p>
 <p>The prey grow exponentially in the absence of predators but are consumed at a rate proportional to predator-prey encounters. The predators die off without prey but grow through consumption. This system has a non-trivial equilibrium at $(c/d, a/b)$ around which populations oscillate periodically—a phenomenon that cannot occur in single first-order ODEs but emerges naturally in two-dimensional systems.</p>
 <h2 id="Linear-Systems-and-Matrix-Exponentials">Linear Systems and Matrix Exponentials<a class="anchor-link" href="#Linear-Systems-and-Matrix-Exponentials">¶</a></h2><p>Linear systems of ODEs deserve special attention because they are exactly solvable and provide the foundation for understanding nonlinear systems through linearization. A linear system has the form:</p>
 <p>$$\frac{d\mathbf{x}}{dt} = A\mathbf{x}$$</p>
-<p>where $\mathbf{x}$ is a vector and $A$ is a constant matrix. The solution is given by the matrix exponential: $\mathbf{x}(t) = e^{At}\mathbf{x}_0$.</p>
+<p>where $\mathbf{x}$ is a vector and $A$ is a constant matrix. The solution is given by the <a href="https://en.wikipedia.org/wiki/Matrix_exponential">matrix exponential</a>: $\mathbf{x}(t) = e^{At}\mathbf{x}_0$.</p>
 <p>The behavior of this system is entirely determined by the eigenvalues of $A$. If all eigenvalues have negative real parts, solutions decay to zero—the system is stable. If any eigenvalue has a positive real part, solutions grow without bound—the system is unstable. Complex eigenvalues lead to oscillatory behavior, with the real part determining whether the oscillations grow or decay.</p>
 <p>This eigenvalue analysis extends to nonlinear systems through linearization. Near an equilibrium point, we approximate the nonlinear system by its linear part, and the eigenvalues of the Jacobian matrix determine local stability. This is why linear algebra is indispensable for understanding ODEs.</p>
 <h2 id="Higher-Order-ODEs-and-Dimensionality">Higher-Order ODEs and Dimensionality<a class="anchor-link" href="#Higher-Order-ODEs-and-Dimensionality">¶</a></h2><p>A second-order ODE involves the second derivative: $d^2x/dt^2 = f(x, dx/dt)$. Such equations arise naturally in mechanics, where Newton's second law gives acceleration (the second derivative of position) as a function of position and velocity. For instance, a simple harmonic oscillator satisfies $d^2x/dt^2 = -\omega^2 x$.</p>
@@ -7565,6 +7565,16 @@ $$\frac{dp}{dt} = \beta_p m - \gamma_p p$$</p>
 <p>For systems with discrete events—such as cell division, viral infection, or threshold-crossing—hybrid models combining ODEs with discrete switches may be more appropriate. The choice of modeling framework depends on the biological question and the available data.</p>
 <h2 id="Key-Takeaways">Key Takeaways<a class="anchor-link" href="#Key-Takeaways">¶</a></h2><p>Ordinary differential equations are the natural language for describing continuous change. They allow us to express mechanistic understanding—how rates of change depend on current state—and derive predictions about long-term behavior. While only special ODEs have closed-form solutions, qualitative analysis and numerical methods provide powerful tools for understanding any system.</p>
 <p>For students of computational bioengineering, facility with ODEs is essential. They appear throughout systems biology, from gene regulation to population dynamics. The ability to formulate problems as ODEs, analyze their behavior, simulate them numerically, and connect them to data is fundamental to modern quantitative biology.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5ae8b43a">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 </div>
 </div>
 </div>
