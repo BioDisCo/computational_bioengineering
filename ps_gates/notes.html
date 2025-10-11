@@ -7524,6 +7524,10 @@ MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h1 id="Problem-1">Problem 1<a class="anchor-link" href="#Problem-1">¶</a></h1><p>Get familiar with real genetic gate designs by working through the following code.</p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+Have fun reading and playing with the code :)
+</div></details>
 </div>
 </div>
 </div>
@@ -7532,7 +7536,7 @@ MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [228]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">urllib.request</span><span class="w"> </span><span class="kn">import</span> <span class="n">urlopen</span>
@@ -7570,7 +7574,7 @@ Let's load it into a variable so that we can work with it.</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [229]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">github_to_raw</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
@@ -7631,7 +7635,7 @@ Let's load it into a variable so that we can work with it.</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [230]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pprint</span><span class="w"> </span><span class="kn">import</span> <span class="n">pprint</span>
@@ -7692,7 +7696,7 @@ Let's load it into a variable so that we can work with it.</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [231]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [20]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">pprint</span><span class="p">(</span><span class="nb">set</span><span class="p">([</span><span class="n">d</span><span class="p">[</span><span class="s1">'collection'</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">ucf_data</span><span class="p">]))</span>
@@ -7741,7 +7745,7 @@ Let's load it into a variable so that we can work with it.</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [232]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [21]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">gates_lib</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">ucf_data</span> <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="s1">'collection'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'gates'</span><span class="p">]</span>
@@ -7792,7 +7796,7 @@ Let's load it into a variable so that we can work with it.</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Let's pick the first gate in the list and show some info on it.</p>
+<p>Let's pick a gate in the list and show some info on it.</p>
 </div>
 </div>
 </div>
@@ -7801,7 +7805,7 @@ Let's load it into a variable so that we can work with it.</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [233]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [22]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">gate_name</span> <span class="o">=</span> <span class="s1">'A1_AmtR'</span>
@@ -7853,7 +7857,7 @@ Let's load it into a variable so that we can work with it.</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [234]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [23]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># check is all gates are NOR</span>
@@ -7868,7 +7872,7 @@ Let's load it into a variable so that we can work with it.</p>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[234]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[23]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>True</pre>
 </div>
@@ -7891,7 +7895,7 @@ Let's load it into a variable so that we can work with it.</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [235]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [24]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">structure_lib</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">ucf_data</span> <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="s1">'collection'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'structures'</span><span class="p">]</span>
@@ -7935,8 +7939,9 @@ Let's load it into a variable so that we can work with it.</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>The structure sounds familiar from the lecture: it is a tandem promoter <code>NOR</code> gate with two input promoters <code>in1</code> and <code>in2</code> (see <code>inputs</code>). Its output is the <code>pAmtR</code> promoter (see <code>outputs</code>).</p>
-<p>Let's take a look at the components used in this structure to be sure.</p>
+<p>The structure sounds familiar from the lecture: it is a tandem promoter <code>NOR</code> gate with two input promoters <code>in1</code> and <code>in2</code> (see <code>inputs</code>) followed by a <code>A1_AmtR_cassette</code> (a sequence of genetic parts).
+Its output is the <code>pAmtR</code> promoter (see <code>outputs</code>).</p>
+<p>Let's take a look at the components used in the <code>A1_AmtR_cassette</code>.</p>
 </div>
 </div>
 </div>
@@ -7945,7 +7950,7 @@ Let's load it into a variable so that we can work with it.</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [236]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [25]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">parts</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'BydvJ'</span><span class="p">,</span> <span class="s1">'A1'</span><span class="p">,</span> <span class="s1">'AmtR'</span><span class="p">,</span> <span class="s1">'L3S2P55'</span><span class="p">]</span>
@@ -8012,7 +8017,7 @@ Let's load it into a variable so that we can work with it.</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [237]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [26]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">model_lib</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">ucf_data</span> <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="s1">'collection'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'models'</span><span class="p">]</span>
@@ -8080,7 +8085,7 @@ Let's load it into a variable so that we can work with it.</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [238]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [27]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">functions_lib</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">ucf_data</span> <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="s1">'collection'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'functions'</span><span class="p">]</span>
@@ -8164,7 +8169,7 @@ Let's load it into a variable so that we can work with it.</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [239]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [28]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
@@ -8266,7 +8271,7 @@ For example, Figure S30 shows how distributions are probagated and Section VII.C
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [240]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [29]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">pprint</span><span class="p">([</span><span class="n">f</span><span class="p">[</span><span class="s2">"name"</span><span class="p">]</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">functions_lib</span><span class="p">])</span>
@@ -8331,7 +8336,7 @@ For example, Figure S30 shows how distributions are probagated and Section VII.C
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [241]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [30]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">gate_cytometry_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">gate_name</span><span class="si">}</span><span class="s2">_cytometry"</span>
@@ -14410,7 +14415,10 @@ Checking if distribution. This should be 1: 1.0
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Model-based-on-experimental-data">Model based on experimental data<a class="anchor-link" href="#Model-based-on-experimental-data">¶</a></h2><p>To simplify this undertaking, we only model the expected input-output behavior.</p>
+<h2 id="Model-based-on-experimental-data">Model based on experimental data<a class="anchor-link" href="#Model-based-on-experimental-data">¶</a></h2><p>Let us plot the transfer characteristics from the distributions.
+Distributions can be shown in many different ways.</p>
+<p>We go for the mean with <a href="https://en.wikipedia.org/wiki/Quantile">quantiles</a> in this case.</p>
+<p>We will also plot the deterministic fitted Hill model on top to see how well it fits. For some gates the fit is very good, for some a bit less.</p>
 </div>
 </div>
 </div>
@@ -14419,7 +14427,7 @@ Checking if distribution. This should be 1: 1.0
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [242]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [31]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">rv_discrete</span>
@@ -14455,6 +14463,9 @@ Checking if distribution. This should be 1: 1.0
 <span class="n">means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">means</span><span class="p">)</span>
 <span class="n">q10</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">q10</span><span class="p">)</span>
 <span class="n">q90</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">q90</span><span class="p">)</span>
+
+<span class="c1"># We sort the data ascending in x_val (= the input)</span>
+<span class="c1"># since unsorted data is in the library.</span>
 
 <span class="c1"># Get sorting indices</span>
 <span class="n">sort_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">x_vals</span><span class="p">)</span>
@@ -14493,9 +14504,9 @@ Checking if distribution. This should be 1: 1.0
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[242]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[31]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>&lt;matplotlib.legend.Legend at 0x1352466c0&gt;</pre>
+<pre>&lt;matplotlib.legend.Legend at 0x1173c98b0&gt;</pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
@@ -14507,6 +14518,18 @@ Checking if distribution. This should be 1: 1.0
 </div>
 </div>
 </div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=679be454">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>The graph nicely shows the two transfer characteristics: the measurement and the fit.</p>
+<p>In the measurements, one can clearly see an outlier experiment. When computing with the measurement distributions, we have to be careful to correct or clean this.</p>
+</div>
+</div>
+</div>
+</div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=456c0abc">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -14514,17 +14537,33 @@ Checking if distribution. This should be 1: 1.0
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h1 id="Problem-2:-Gate-characteristics">Problem 2: Gate characteristics<a class="anchor-link" href="#Problem-2:-Gate-characteristics">¶</a></h1><p>Plot all deterministic Hill models for all <code>NOR</code> gates in log-log plots.
-You can plot them for a single combined input as we did.</p>
+You can plot them for a single combined input.</p>
 <p>The plot should be nicely arranged so that the viewer can compare them next to each other.
 For example in a grid.
 Also think about common axis limits, gate names as titles, etc.</p>
-<p>What do you observe for the gate library. What does this mean for composition of gates?</p>
-<h1 id="Problem-3:-Simulation-of-Inverter-Chain">Problem 3: Simulation of Inverter Chain<a class="anchor-link" href="#Problem-3:-Simulation-of-Inverter-Chain">¶</a></h1><p>Propagate determinsitic input-output values from inputs to an output.
-Write a function that allows you to call <code>progagate(circuit: list[str], i: float) -&gt; float</code>.
+<p>What do you observe in the gate library. What does this mean for composition of gates?</p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+Check out the log-log plot function in the lecture. Also check out plt.subplots for plotting grids of figures.
+
+<p>For the composition: check out input and resulting output ranges. The output range is the next input range.
+Further, does a logical value like a 0 get mapped to a 1 and then back to a 0 when being composed? For which values does this hold? Try solving this graphically.</p>
+</div></details>
+<h1 id="Problem-3:-Simulation-of-Inverter-Chain">Problem 3: Simulation of Inverter Chain<a class="anchor-link" href="#Problem-3:-Simulation-of-Inverter-Chain">¶</a></h1><p>Propagate determinsitic input-output values from inputs to an output.</p>
+<p><strong>a)</strong> Write a function that allows you to call <code>progagate(circuit: list[str], i: float) -&gt; float</code>.
 Here, <code>circuit</code> is a linear circuit of <code>NOR</code> gates but with a single input (<code>INV</code> gates).
 The circuit is encoded as a <code>list[str]</code> of <code>NOR</code> names from the library.
-Argument <code>i</code> is an input value in RPUs.</p>
-<p>The output of the function is the output of the circuit in RPUs.</p>
+Argument <code>i</code> is an input value in RPUs.
+The output of the function is the output of the circuit in RPUs.</p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+Since we are using only single promoters for the linear circuit, we can disregard the input composition.
+</div></details>
+<p><strong>b)</strong> Use the result of (a) to plot the transfer function for a linear circuit. Show a circuit that you consider good and one that you consider bad and tell us why.</p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+Good vs. bad: How are logical values mapped in a chain of 2 inverters? How large is the dynamic range (logical 0 to logical 1 in the output)?
+</div></details>
 </div>
 </div>
 </div>
