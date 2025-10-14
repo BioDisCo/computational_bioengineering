@@ -7523,7 +7523,80 @@ MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Including-mRNA-and-protein-in-the-oscillator-model">Including mRNA and protein in the oscillator model<a class="anchor-link" href="#Including-mRNA-and-protein-in-the-oscillator-model">¶</a></h1><hr/>
+<h1 id="Problem-1:-Self-Repression-with-mRNA-Dynamics">Problem 1: Self-Repression with mRNA Dynamics<a class="anchor-link" href="#Problem-1:-Self-Repression-with-mRNA-Dynamics">¶</a></h1><p>Consider a gene that represses its own production, with explicit mRNA and protein dynamics:</p>
+<p>$$\frac{dm}{dt} = \frac{\beta}{1 + p^n} - \gamma m$$</p>
+<p>$$\frac{dp}{dt} = km - \alpha p$$</p>
+<p>where $m$ is mRNA concentration, $p$ is protein concentration, $k$ is translation rate, $\gamma$ is mRNA degradation rate, and $\alpha$ is protein degradation rate.</p>
+<p><strong>a)</strong> Find the fixed point $(m^*, p^*)$ and compute the $2\times 2$ Jacobian matrix at this point.</p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+At the fixed point, $dm/dt = dp/dt = 0$. The Jacobian is $J_{ij} = \partial(\dot{x}_i)/\partial x_j$ where $x_1 = m$, $x_2 = p$.
+</div></details>
+<p><strong>b)</strong> Calculate the trace and determinant of the Jacobian. Show that $\text{trace}(J) = -\gamma - \alpha$. What does this tell you about the eigenvalues?</p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+The trace is the sum of eigenvalues: $\lambda_1 + \lambda_2 = \text{trace}(J)$. If both $\gamma, \alpha &gt; 0$, what can you say about $\text{Re}(\lambda_1) + \text{Re}(\lambda_2)$?
+</div></details>
+<p><strong>c)</strong> Can this system produce sustained oscillations? Explain using the condition that for instability (sustained oscillations), at least one eigenvalue must have positive real part.</p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+For a $2\times 2$ matrix, if $\text{trace} &lt; 0$ and $\det &gt; 0$, both eigenvalues have negative real part. Can the trace ever be positive here?
+</div></details>
+<h1 id="Problem-2:-Two-Genes---Damped-Oscillations">Problem 2: Two Genes - Damped Oscillations<a class="anchor-link" href="#Problem-2:-Two-Genes---Damped-Oscillations">¶</a></h1><p>Now consider two genes that mutually repress each other:</p>
+<p>$$\frac{dx}{dt} = \frac{\beta}{1 + y^n} - \alpha x$$</p>
+<p>$$\frac{dy}{dt} = \frac{\beta}{1 + x^n} - \alpha y$$</p>
+<p><strong>a)</strong> Find the symmetric steady state $(x^*, y^*)$ and compute the Jacobian matrix at this point.</p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+At the fixed point, $dx/dt = dy/dt = 0$. By symmetry, $x^* = y^*$. The Jacobian has the form $J_{ij} = \partial(\dot{x}_i)/\partial x_j$.
+</div></details>
+<p><strong>b)</strong> Show that the eigenvalues are $\lambda = -\alpha \pm h'(x^*)$ where $h(u) = \beta/(1+u^n)$. Under what condition do the eigenvalues have imaginary parts?</p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+For a $2\times 2$ matrix with structure $J = [[-\alpha, a], [a, -\alpha]]$, the eigenvalues are $\lambda = -\alpha \pm a$. Complex eigenvalues occur when $a$ is imaginary or when... think about what makes $\lambda$ complex.
+</div></details>
+<p><strong>c)</strong> Can the real part of the eigenvalues ever be positive? What type of behavior does this system exhibit and why can't it sustain oscillations?</p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+Look at $\text{Re}(\lambda) = -\alpha + \text{Re}(h'(x^*))$. What is the sign of $h'(x^*)$ for a repression function? Can $\text{Re}(\lambda) &gt; 0$?
+</div></details>
+<h1 id="Problem-3:-Frequency-of-the-Three-Gene-Repressilator">Problem 3: Frequency of the Three-Gene Repressilator<a class="anchor-link" href="#Problem-3:-Frequency-of-the-Three-Gene-Repressilator">¶</a></h1><p>For the three-gene repressilator, the eigenvalues with imaginary parts are:</p>
+<p>$$\lambda_{1,2} = -\alpha + h'(x^*) \cdot e^{\pm 2\pi i/3}$$</p>
+<p>where $h(u) = \beta/(1+u^n)$ and $x^*$ is the fixed point.</p>
+<p><strong>a)</strong> Write $\lambda_1$ in the form $\lambda_1 = \sigma + i\omega$ where $\sigma$ is the real part and $\omega$ is the imaginary part. Express both $\sigma$ and $\omega$ in terms of $\alpha$ and $h'(x^*)$.</p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+Use $e^{i2\pi/3} = \cos(2\pi/3) + i\sin(2\pi/3) = -1/2 + i\sqrt{3}/2$. Then $\lambda_1 = -\alpha + h'(x^*)\cdot(-1/2 + i\sqrt{3}/2)$.
+</div></details>
+<p><strong>b)</strong> The period of oscillation is $T = 2\pi/|\omega|$. Derive an expression for $T$. How does the period depend on the degradation rate $\alpha$?</p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+From part (a), you should have $\omega = (\sqrt{3}/2)h'(x^*)$. Note that $h'(x^*)$ is negative for repression, so use $|\omega|$.
+</div></details>
+<p><strong>c)</strong> Using $h'(x^*)$ from the lecture, express the period in terms of $\alpha$, $\beta$, $n$, and $x^*$. If you want to double the period, what parameters could you adjust and how?</p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+$h'(x^*)$ contains $\alpha$ explicitly (through the fixed point condition). Think about which parameters appear in $|h'(x^*)|$ and how $T$ scales with them.
+</div></details>
+<h1 id="Problem-4:-Four-Genes-Instead-of-Three?">Problem 4: Four Genes Instead of Three?<a class="anchor-link" href="#Problem-4:-Four-Genes-Instead-of-Three?">¶</a></h1><p>Consider a four-gene cycle where each gene represses the next:</p>
+<p>$$\frac{dx_i}{dt} = \frac{\beta}{1 + x_{i-1}^n} - \alpha x_i, \quad i = 1,2,3,4 \text{ (mod 4)}$$</p>
+<p><strong>a)</strong> The eigenvalues are:</p>
+<p>$$\lambda_k = -\alpha + h'(x^*) \cdot e^{i\pi k/2}, \quad k = 0,1,2,3$$</p>
+<p>Write out all four eigenvalues explicitly.</p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+Evaluate $e^{i\pi k/2}$ for $k = 0, 1, 2, 3$. Remember $e^{i0} = 1$, $e^{i\pi/2} = i$, $e^{i\pi} = -1$, $e^{i3\pi/2} = -i$.
+</div></details>
+<p><strong>b)</strong> Examine the eigenvalue with $k=2$. What is special about it compared to the three-gene case?</p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+For $k=2$, you get $\lambda_2 = -\alpha + h'(x^*)\cdot(-1) = -\alpha - h'(x^*)$. This is a real eigenvalue. What's the sign of $h'(x^*)$?
+</div></details>
+<p><strong>c)</strong> Why might even-numbered cycles be problematic for generating sustained oscillations?</p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+An even cycle can be "split" into two identical subsystems. Think about what this symmetry implies for stability.
+</div></details>
 </div>
 </div>
 </div>
@@ -7534,78 +7607,9 @@ MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>In the analysis in the lecture, we only considered the three proteins. Now, we will consider the mRNA dynamics explicitly as well. We will again assume a symmetry among the various genes, wherein all promoters have the same strength and all repressors have the same Hill coefficient $n$ and Hill activation constant $k$. The dynamical equations are then</p>
-<p>\begin{align}
-\frac{\mathrm{d}m_i}{\mathrm{d}t} &amp;= \alpha + \frac{\beta_m}{1 + (x_j/k)^n} - \gamma_m m_i,\\[1em]
-\frac{\mathrm{d}x_i}{\mathrm{d}t} &amp;= \beta_p m_i - \gamma_p x_i, \\[1em]
-\end{align}</p>
-<p>with $i,j$ pairs $(1,3), (2,1), (3,2)$. Here, we have introduced $\rho$ to allow for leaky transcription. In dimensionless units, these equations are</p>
-<p>\begin{align}
-\frac{\mathrm{d}m_i}{\mathrm{d}t} &amp;= \beta\left(\rho + \frac{1}{1 + x_j^n}\right) - m_i, \\[1em]
-\gamma^{-1}\,\frac{\mathrm{d}x_i}{\mathrm{d}t} &amp;= m_i - x_i,
-\end{align}</p>
-<p>where $\gamma \equiv \gamma_p/\gamma_m$ is the ratio of the two timescales in the system–the protein and mRNA degradation/decay rates, $\beta = \beta_m\beta_p/\gamma_m\gamma_p k$ is a dimensionless promoter strength, and $\rho = \alpha/\beta_m$ is the relative strength of leaky versus regulated expression.</p>
-<p>We can solve this system numerically and plot the dynamics.</p>
-<p>Repeat the analysis of the repressilator using these 6 chemical species. Try to support the following design objectives with your analysis:</p>
+<hr/>
+<p><strong>License</strong>: © 2025 Matthias Függer and Thomas Nowak. Licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.</p>
 </div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="The-repressilator-design-objectives">The repressilator design objectives<a class="anchor-link" href="#The-repressilator-design-objectives">¶</a></h2><p>From the analysis we can extract several design objectives or guidelines that will optimize the chances of achieving self-sustaining oscillations. An ideal system should use:</p>
-<ol>
-<li><p>Low "leakiness:" $\rho \ll 1$ ⟶ <em>Use tight, artificial promoters that can be fully repressed.</em></p>
-</li>
-<li><p>Strong promoters: $\beta \gg 1$ ⟶ <em>Can be achieved using strong promoters derived from phages that produce high protein levels</em></p>
-</li>
-<li><p>Similar protein and mRNA decay rates $\gamma\approx 1$ ⟶ <em>Destabilize repressors to increase their decay rates to be more comparable to those of mRNA. This can be done by adding destabilizing C-terminal tags based on the <a href="https://doi.org/10.1038/75843">ssrA protein degradation system</a>.</em></p>
-</li>
-</ol>
-<div style="margin: auto; width: 300px;">
-<figure style="width: 100%; margin: auto; padding: 20px;">
-<img alt="ssrA tags" src="figs/ssrA_tags.png"/>
-</figure>
-</div>
-<p><em>The protein production shut off was at time zero. This plot shows how adding different variants of the 11-amino acid ssrA tag can alter the decay rate of a fluorescent protein. The gap in data due to technical glitch.</em></p>
-<ol start="4">
-<li>Ultrasensitive repression curves, ideally $n &gt; 1.5$ or $2$, or as large as possible ⟶ <em>Use intrinsically cooperative repression mechanisms, such as those from phage λ, or those that incorporate multiple binding sites, such as those in the TetR system. <a href="https://academic.oup.com/nar/article/25/6/1203/1197243">Lutz &amp; Bujard</a> showed that the phage λ</em> $P_R$ <em>promoter architecture provides a high regulatory range, and can be adapted to work with binding sites for LacI and TetR</em>.</li>
-</ol>
-<p>Additional biological design goals:</p>
-<ol start="5">
-<li><p>To minimize toxicity from overexpressing repressors, put the circuit on a low copy plasmid (pSC101)...</p>
-</li>
-<li><p>...But to maximize the readout, put a fluorescent reporter gene on a higher copy number plasmid (ColE1).</p>
-</li>
-<li><p>Destabilize the fluorescent protein so that it can track the circuit activity</p>
-</li>
-<li><p>Avoid "read through" from one operon to the next ⟶ add transcriptional terminators between promoter-repressor units.</p>
-</li>
-</ol>
-<p>Based on these considerations,  the repressilator was designed as a two plasmid system to be used in an <em>E. coli</em> strain deleted for the natural <em>lac</em> operon.</p>
-<div style="margin: auto; width: 400px;">
-<figure style="width: 100%; margin: auto; padding: 20px;">
-<img alt="repressilator plasmids" src="figs/repressilator_plasmids.png"/>
-</figure>
-</div>
-<p>Here, the repressilator consists of three repressors on the low copy pSC101 plasmid, with TetR additionally repressing a green fluorescent protein reporter on the higher copy ColE1 plasmid. The <em>lite</em> suffix on the repressors signifies that they have a destruction tag to decrease their stability.  The <em>aav</em> suffix on the GFP indicates that it is a variant of intermediate stability.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<hr>
-<p><strong>License &amp; Attribution</strong>: This page is from material by <a href="https://biocircuits.github.io/">Michael Elowitz and Justin Bois</a> (© 2021–2025), licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>, with minor modifications.</p>
-</hr></div>
 </div>
 </div>
 </div>
