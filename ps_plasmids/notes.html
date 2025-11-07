@@ -7534,7 +7534,7 @@ MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Problem-1:-Ups,-our-lab-has-no-more-BamHI">Problem 1: Ups, our lab has no more BamHI<a class="anchor-link" href="#Problem-1:-Ups,-our-lab-has-no-more-BamHI">¶</a></h1><p>Imagine, after the lecture you go in the lab to create the "Hello world" plasmid.
+<h1 id="Problem-1:-Ups,-our-lab-has-no-more-BamHI">Problem 1: Ups, our lab has no more BamHI<a class="anchor-link" href="#Problem-1:-Ups,-our-lab-has-no-more-BamHI">¶</a></h1><p>Imagine, after the lecture you go to the lab to create the "Hello world" plasmid.
 Unfortunately, you find out that there is no more of the restriction enzyme BamHI - but you have the widely used EcoRI.</p>
 <p><strong>a)</strong> Adapt the lecture's code for EcoRI.</p>
 <details class="spoiler"><summary>Show hint</summary>
@@ -7556,8 +7556,7 @@ Think about the homology arms.
 <div>
 Should be almost for free if you adapted the code in (a). Just some constants for plotting may need a check. Otherwise, what about the distance between the promoter and the RBS. Is it larger? Check if there are now even more potential start codons.
 </div></details>
-<h1 id="Problem-2:-Linearize-Backbone-with-PCR">Problem 2: Linearize Backbone with PCR<a class="anchor-link" href="#Problem-2:-Linearize-Backbone-with-PCR">¶</a></h1><p>In the lecture we saw that there is a little hack in our code that may need polishing for a clean design: we just let the original RBS sequence
-with the original start codon and initial part of the protein in the construct and simply added an RBS inside the original CDS.
+<h1 id="Problem-2:-Linearize-Backbone-with-PCR">Problem 2: Linearize Backbone with PCR<a class="anchor-link" href="#Problem-2:-Linearize-Backbone-with-PCR">¶</a></h1><p>In the lecture we saw that there is a little hack in our code that may need polishing for a clean design: we kept the original RBS sequence with the original start codon and initial part of the protein in the construct and simply added an RBS inside the original CDS.
 That will lead to some Ribosomes starting at a wrong position.</p>
 <p>Remove this hack by a cleaner way to linearize the backbone, at the same time cutting out the RBS with the initial CDS fragment.
 We will do this via designing a forward and a backward primer and PCRing the backbone.</p>
