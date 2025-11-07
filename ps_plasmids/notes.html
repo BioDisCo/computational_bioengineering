@@ -7534,9 +7534,48 @@ MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Implement a simple version of the <a href="https://doi.org/10.1016/B978-0-12-385120-8.00002-4">RBS Calculator</a> using the <a href="https://nupack.org/"><code>nupack</code> library</a> for RNA calculations.
-You only have to do analysis and not design.
-Try to think of a few ways to improve the model.</p>
+<h1 id="Problem-1:-Ups,-our-lab-has-no-more-BamHI">Problem 1: Ups, our lab has no more BamHI<a class="anchor-link" href="#Problem-1:-Ups,-our-lab-has-no-more-BamHI">¶</a></h1><p>Imagine, after the lecture you go in the lab to create the "Hello world" plasmid.
+Unfortunately, you find out that there is no more of the restriction enzyme BamHI - but you have the widely used EcoRI.</p>
+<p><strong>a)</strong> Adapt the lecture's code for EcoRI.</p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+Essentially replace BamHI with EcoRI. Just be careful about the overhangs and check if some code parts use position constants that need to be changed.
+</div></details>
+<p><strong>b)</strong> Check if there are any problems with this.</p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+Does it cut only once within the MCS?
+</div></details>
+<p><strong>c)</strong> What is the insert fragment? Did it change?</p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+Think about the homology arms.
+</div></details>
+<p><strong>d)</strong> Run the Gibson simulation as in the lecture and show the final construct? Do you see any reportable changes?</p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+Should be almost for free if you adapted the code in (a). Just some constants for plotting may need a check. Otherwise, what about the distance between the promoter and the RBS. Is it larger? Check if there are now even more potential start codons.
+</div></details>
+<h1 id="Problem-2:-Linearize-Backbone-with-PCR">Problem 2: Linearize Backbone with PCR<a class="anchor-link" href="#Problem-2:-Linearize-Backbone-with-PCR">¶</a></h1><p>In the lecture we saw that there is a little hack in our code that may need polishing for a clean design: we just let the original RBS sequence
+with the original start codon and initial part of the protein in the construct and simply added an RBS inside the original CDS.
+That will lead to some Ribosomes starting at a wrong position.</p>
+<p>Remove this hack by a cleaner way to linearize the backbone, at the same time cutting out the RBS with the initial CDS fragment.
+We will do this via designing a forward and a backward primer and PCRing the backbone.</p>
+<p><strong>a)</strong> Determine the sequence that you want to remove from the backbone.</p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+Look for a Shine-Dalgarno-close sequence between the lac operator and the original start codon. This will be a good start for the cut. The end of the cut is a bit more free and can be chosen anywhere in the lacZ-alpha CDS.
+</div></details>
+<p><strong>b)</strong> Design primers with <code>primer3</code></p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+Be careful how they are arranged. You want to amplify the larger part between them, not the short insert.
+</div></details>
+<p><strong>b)</strong> Adapt the lecture's code to the new linearized backbone and run a simulated Gibson Assembly.</p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+This is much like the previous exercise.
+</div></details>
 </div>
 </div>
 </div>
