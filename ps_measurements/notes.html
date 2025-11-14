@@ -7535,21 +7535,22 @@ MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>Assume bacteria are shaped like spheres of a certain radius $r &gt; 0$. Further, assume that if light hits a bacteria, it is scattered into a random direction.</p>
-<p>Write code that allows you to:</p>
+<p><strong>a)</strong> Write code that allows you to:</p>
 <ol>
-<li>Initalize a certain number of non-overlapping spheres in a 2D volume of size $1 \times 1$. Make sure that spheres do not overlap.</li>
-<li>Simulate scattering of light by following ray traces emitted form the left in parallel.</li>
-<li>Simulate capturing of these traces through a hole of size $h &gt; 0$ within distance $\ell &gt; 0$ to the testing volume.</li>
+<li>Initalize a certain number of non-overlapping particles (spheres) in a 2D volume of size $1 \times 1$.
+Make sure that spheres do not overlap.</li>
+<li>Simulate scattering of light by following ray traces emitted form the left in parallel. You can assume that they scatter in a random direction upon hitting a particle.</li>
+<li>Simulate capturing ray traces through a hole of size $h &gt; 0$ within distance $\ell &gt; 0$ to the testing volume.</li>
 </ol>
-<p>Experiment with:</p>
-<ol>
-<li>The OD that you measure as a function of the number of spheres.</li>
-<li>Think of experiments for $r$, $h$, and $\ell$ and what you would expect. Then test your hypothesis.</li>
-</ol>
-<p>Limitations:</p>
-<ol>
-<li>What are limitations of our simplified model?</li>
-</ol>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+You can use Python libraries for this, but we suggest to code it directly.
+</div></details>
+<p><strong>b)</strong> Plot the OD that you measure as a function of the number of spheres. What happens if you change the size of the hole.</p>
+<details class="spoiler"><summary>Show hint</summary>
+<div>
+The OD is the log of the captured intensity. The curve will likely flatten off due to multiple scattering effects.
+</div></details>
 </div>
 </div>
 </div>
