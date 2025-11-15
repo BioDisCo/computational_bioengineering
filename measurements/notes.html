@@ -7559,7 +7559,7 @@ MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [21]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [240]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Uncomment the following line to install required packages</span>
@@ -7570,12 +7570,23 @@ MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 </div>
 </div>
 </div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Imports and logging</p>
+</div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [22]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [241]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
@@ -7585,6 +7596,35 @@ MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 <span class="kn">import</span><span class="w"> </span><span class="nn">scipy</span>
 
 <span class="n">u</span> <span class="o">=</span> <span class="n">pint</span><span class="o">.</span><span class="n">UnitRegistry</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [242]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+
+<span class="c1"># Simple logger setup</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">"measurements"</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">propagate</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="c1"># Remove any existing handlers first</span>
+<span class="k">if</span> <span class="n">logger</span><span class="o">.</span><span class="n">handlers</span><span class="p">:</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">handlers</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+
+<span class="c1"># Add a StreamHandler</span>
+<span class="n">sh</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()</span>
+<span class="n">sh</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+<span class="n">sh</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="s2">"[</span><span class="si">%(levelname)s</span><span class="s2">] </span><span class="si">%(funcName)s</span><span class="s2">: </span><span class="si">%(message)s</span><span class="s2">"</span><span class="p">))</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">sh</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7680,13 +7720,29 @@ dI(x) = - \gamma \cdot c \cdot I(x) \cdot dx
 $$
 or, in terms of a differential equation,
 $$
-\frac{dI(x)}{dx} = - \gamma \cdot c \cdot I(x)
+\frac{dI(x)}{dx} = - \gamma \cdot c \cdot I(x) \enspace.
 $$</p>
 <p>Solving this ODE, see <a href="https://compbioeng.biodis.co/odes/notes.html">the background chapter on ODEs</a>, yields
 $$
 I(x) = I(0) \cdot e^{-\gamma \cdot c \cdot x}
 $$
 from the Beer–Lambert law.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="The-case-of-a-non-transparent-liquid">The case of a non-transparent liquid<a class="anchor-link" href="#The-case-of-a-non-transparent-liquid">¶</a></h3><p>Many liquids, like LB medium, are not fully transparent and will also reduce $I(x)$ even when $c=0$.
+Model this by introducing a medium contribution with concentration $c'$ and coefficient $\gamma'$. Then for two contributors we get</p>
+<p>$$
+I(w) = I(0) \cdot e^{-(\gamma c + \gamma' c') w} \enspace.
+$$</p>
+<p>This is the simple form of the Beer–Lambert relation when scattering/absorption scales linearly with concentration (within the linear range of the instrument).</p>
 </div>
 </div>
 </div>
@@ -7706,23 +7762,26 @@ For example, for <em>E. coli</em> often $\text{OD}_{600}$ is used denoting a wav
 <p>Since the liquid without the substance ($c = 0$) will already show certain absorbance (in the above formula we can see this by considering the liquid as a mix of say water and sand with water having a certain $\gamma$ and sand another $\gamma'$) one typically first measures the pure liquid and then the liquid with the dissolved substance (a so called blank measurement).</p>
 <p>Concretely, let us assume the following relation with $\gamma$ for the substance like <em>E. coli</em> and $\gamma'$ for the liquid, e.g., LB growth medium.
 $$
-I(w) = I(0) \cdot e^{-(\gamma c  + \gamma c') w}
+I(w) = I(0) \cdot e^{-(\gamma c  + \gamma' c') w}
 $$</p>
-<p>Then, for the blank measurement with $c = 0$, one has
+<p>Many devices report absorbance (optical density) rather than raw intensity. For clarity we define the natural-log absorbance
 $$
-I_\text{blk}(w) = I(0) \cdot e^{-\gamma c'w}
+A_{e}(w) = -\ln\left(\frac{I(w)}{I(0)}\right) \enspace.
 $$</p>
-<p>This yields,
-\begin{align*}
-\log(I_\text{m}(w)) &amp;= \log(I(0)) - \gamma c' w - \gamma c w\\
-\log(I_\text{blk}(w)) &amp;= \log(I(0)) - \gamma c' w
-\end{align*}
-and thus
-\begin{align*}
-\log(I_\text{m}(w)) - \log(I_\text{blk}(w)) &amp;= \gamma c' w
-\end{align*}</p>
-<p>We can thus take values of $\log(I_\text{m}(w))$ as proportional measurements of the concentration $c$ of the <em>E. coli</em>, after subtracting the blank measurement $\log(I_\text{blk}(w))$.
-Indeed spectrophotometer report such logarithmic intensities as OD values.</p>
+<p>Using the exponential model from above (with both analyte and medium),
+$$
+I(w) = I(0) \cdot e^{-(\gamma c + \gamma' c') w} \enspace,
+$$</p>
+<p>we obtain
+$$
+A_{e}(w) = (\gamma c + \gamma' c') w \enspace.
+$$</p>
+<p>Thus a blank measurement (medium only, $c=0$) gives $A_{e}^{\mathrm{blk}} = \gamma' c' w$, and for a sample $A_{\mathrm{ln}}^{\mathrm{m}} = (\gamma c + \gamma' c') w$. Subtracting the blank removes the medium contribution:</p>
+<p>$$
+A_{e}^{\mathrm{m}} - A_{e}^{\mathrm{blk}} = \gamma c w \enspace.
+$$</p>
+<p>While we used $A_{e}$ for simplicity above, devices typically report the optical density as $A_{10}$, i.e., using $\log_{10}$.
+The following relation holds: $A_{10} = A_{e} / \ln(10)$.</p>
 <p>The formula also hints at a potential problem in comparing OD values.
 We observe that the OD value is proportional to $w$.
 Changing the device or the cuvette with a different $w$ will thus result in different measurements.
@@ -7732,7 +7791,7 @@ FOr example, assume that your device with a normal cuvette of $w = 1$,cm would r
 above $4$ which is not supported by the device.
 By changing to a cuvette that has a thickness of $w = 0.1$,cm we are expecting an OD divided by 10,
 which may very well be in the range of the measurement device and does not require to dilute the sample down before measuring it.</p>
-<p>Some devices can measure a full spectrum, that is, report $\log(I_\text{m}(w))$ for a large range of wavelength with a single measurement.</p>
+<p>Some devices can measure a full spectrum, that is, report OD for a large range of wavelength with a single measurement.</p>
 <p>We will next discuss a measurement method that also relies on spectra and we would like to remark that one can apply similar methods to those discussed next to the absorbance spectra.</p>
 </div>
 </div>
@@ -7757,12 +7816,12 @@ Two types of photons are observed after hitting the sample.</p>
 <h3 id="Wavenumber-notation">Wavenumber notation<a class="anchor-link" href="#Wavenumber-notation">¶</a></h3><p>In Raman spectroscopy, one commonly uses wavenumber rather than wavelength or frequency to characterize photons. This choice is not arbitrary - wavenumber offers practical advantages for spectroscopic measurements.</p>
 <p>The wavenumber $\tilde\nu$ [$\text{m}^{-1}$] is related to the wavelength $\lambda$ [$\text{m}$] via</p>
 <p>$$\tilde\nu = \frac{1}{\lambda}$$</p>
-<p>From the relation between frequnecy $\nu$ [$\text{s}^{-1}$] and the speed of a photon $c$ [$ms^{-1}$], we have</p>
+<p>From the relation between frequency $\nu$ [$\text{s}^{-1}$] and the speed of a photon $c$ [$ms^{-1}$], we have</p>
 <p>$$\tilde\nu = \frac{\nu}{c}$$</p>
 <p>The wavenumber is convenient because it is directly proportional to both the frequency and the energy of a photon via the <a href="https://en.wikipedia.org/wiki/Planck_relation">Planck relation</a>:</p>
 <p>$$E = h\nu = hc\tilde\nu$$</p>
 <p>This direct proportionality means that when we look at a Raman spectrum plotted against wavenumber, peaks at higher wavenumbers correspond to higher energy vibrational transitions in the molecular bonds. Additionally, wavenumber differences (Raman shifts) directly correspond to the energy differences of molecular vibrations, making it easier to identify and compare chemical signatures.</p>
-<h3 id="A-first-synthetic-spectrum">A first synthetic spectrum<a class="anchor-link" href="#A-first-synthetic-spectrum">¶</a></h3><p>We will use the Python library <a href="https://ramanspy.readthedocs.io/en/latest/#">RamanSPy</a> to generate a first synthetic spectrum. It shows peaks of intensity at certain wavelengths, that partially overlap creating this charactersitic spectrum. The generated spectrum does not have a background signal. We will discuss this later in the lecture, but neglect it for the moment, assuming that it has already been removed.</p>
+<h3 id="A-first-synthetic-spectrum">A first synthetic spectrum<a class="anchor-link" href="#A-first-synthetic-spectrum">¶</a></h3><p>We will use the Python library <a href="https://ramanspy.readthedocs.io/en/latest/#">RamanSPy</a> to generate a first synthetic spectrum. It shows peaks of intensity at certain wavelengths, that partially overlap creating this characteristic spectrum. The generated spectrum does not have a background signal. We will discuss this later in the lecture, but neglect it for the moment, assuming that it has already been removed.</p>
 <blockquote>
 <p><strong><em>Side note:</em></strong> While we will discuss Raman spectra, much of what follows is not specific to Raman spectroscopy and holds as well for other spectra.</p>
 </blockquote>
@@ -7774,7 +7833,7 @@ Two types of photons are observed after hitting the sample.</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [23]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [243]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Generate synthetic spectrum</span>
@@ -7810,9 +7869,9 @@ Two types of photons are observed after hitting the sample.</p>
 <p>Visually, the spectrum looks like an overlay of several peaks. Each peak roughly has the form of a bell curve, resp., a <a href="https://en.wikipedia.org/wiki/Gaussian_function">Gaussian function</a>.
 The Gaussian shape sounds reasonable, since we expect the sample to scatter at certain wavenumbers - and as usual for measurements, this scatter will be noisy and thus peaks rather bell shaped than <a href="https://en.wikipedia.org/wiki/Dirac_delta_function">Dirac functions</a>.</p>
 <p>Following this intuition, we start with a simplified notion of a spectrum as a sum of Gaussian functions, each of which corresponds to an idealized peak of amplitude $a$.
-Letting $x$ be the Raman shift, a Guassian peak is a spectrum of the form</p>
+Letting $x$ be the Raman shift, a Gaussian peak is a spectrum of the form</p>
 <p>$$
-f(x) = a \cdot e^{-(x-\mu)/(2 w^2)}
+f(x) = a \cdot e^{-\frac{(x-\mu)^2}{2 w^2}}
 $$</p>
 <p>and we refer to $a$ as the amplitude, $\mu$ the mean, and $w$ the width.
 Let's code a function that creates a peak. For simplicity we will assume here that our spectra all are between 0 and 1000 $\text{cm}^{-1}$ and comprise of 1000 bins, i.e., the numerical resolution is $1 \text{cm}^{-1}$.</p>
@@ -7824,13 +7883,13 @@ Let's code a function that creates a peak. For simplicity we will assume here th
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [24]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [244]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">peak</span><span class="p">(</span><span class="n">pos</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
     <span class="c1"># For simplicity we set spectral range and sample number</span>
     <span class="c1"># to constants.</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
 
     <span class="c1"># Gauss function, with amplitude 1.</span>
     <span class="k">return</span> <span class="mi">1</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span> <span class="o">-</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">pos</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">width</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="p">)</span>
@@ -7846,7 +7905,7 @@ Let's code a function that creates a peak. For simplicity we will assume here th
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>We can now create a simplified first spectrum comprising peaks at 50 and 75 of amplitude 1 and widths 1 and amplitude 1/5 and width 3.</p>
+<p>We can now create a simplified first spectrum comprising peaks at 500 and 750 of amplitude 1 and widths 10 and amplitude 1/5 and width 30.</p>
 </div>
 </div>
 </div>
@@ -7855,11 +7914,11 @@ Let's code a function that creates a peak. For simplicity we will assume here th
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [25]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [245]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Simple spectrum</span>
-<span class="n">s1</span> <span class="o">=</span> <span class="n">peak</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="mi">5</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">75</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">s1</span> <span class="o">=</span> <span class="n">peak</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="mi">5</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">750</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
@@ -7899,11 +7958,11 @@ Let's code a function that creates a peak. For simplicity we will assume here th
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [26]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [246]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Another simple spectrum</span>
-<span class="n">s2</span> <span class="o">=</span> <span class="mf">0.3</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.3</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">s2</span> <span class="o">=</span> <span class="mf">0.3</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.3</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s2</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">)</span>
@@ -7945,13 +8004,13 @@ Let's code a function that creates a peak. For simplicity we will assume here th
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [27]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [247]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">mix</span><span class="p">(</span><span class="n">spec</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">coefficients</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Mix spectra with given coefficients."""</span>
 
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">spec</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">spec</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Expecting at least 1 spectrum"</span><span class="p">)</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">spec</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">coefficients</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Number of spectra and coefficients must match"</span><span class="p">)</span>
@@ -7981,7 +8040,7 @@ Let's code a function that creates a peak. For simplicity we will assume here th
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [28]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [248]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">mixed</span> <span class="o">=</span> <span class="n">mix</span><span class="p">([</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
@@ -8045,7 +8104,7 @@ $$</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [29]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [249]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">demix</span><span class="p">(</span><span class="n">components</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">mixed</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
@@ -8054,7 +8113,7 @@ $$</p>
     <span class="k">return</span> <span class="n">c</span><span class="p">,</span> <span class="n">residuals</span>
 
 <span class="n">c</span><span class="p">,</span> <span class="n">residuals</span> <span class="o">=</span> <span class="n">demix</span><span class="p">(</span><span class="n">components</span><span class="o">=</span><span class="p">[</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">],</span> <span class="n">mixed</span><span class="o">=</span><span class="n">mixed</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"The coefficients are </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s2">.</span><span class="se">\n</span><span class="s2">The sums of squared residuals is </span><span class="si">{</span><span class="n">residuals</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"The coefficients are </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s2">.</span><span class="se">\n</span><span class="s2">The sums of squared residuals are </span><span class="si">{</span><span class="n">residuals</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8068,7 +8127,7 @@ $$</p>
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>The coefficients are [0.2 0.5].
-The sums of squared residuals is [3.816829e-30].
+The sums of squared residuals are [9.20547852e-31].
 </pre>
 </div>
 </div>
@@ -8097,13 +8156,13 @@ The sums of squared residuals is [3.816829e-30].
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [30]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [250]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">s3</span> <span class="o">=</span> <span class="mf">0.3</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.3</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.2</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">67</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">70</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
-<span class="n">s4</span> <span class="o">=</span> <span class="mf">0.2</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.2</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">62</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.0</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">s5</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.2</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">44</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">s6</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.0</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.7</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">s3</span> <span class="o">=</span> <span class="mf">0.3</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.3</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.2</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">670</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">700</span><span class="p">,</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">s4</span> <span class="o">=</span> <span class="mf">0.2</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.2</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">620</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.0</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">640</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">s5</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.2</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">440</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">s6</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">160</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.0</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">220</span><span class="p">,</span><span class="mi">40</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.7</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
 <span class="n">mixed</span> <span class="o">=</span> <span class="n">mix</span><span class="p">([</span><span class="n">s3</span><span class="p">,</span> <span class="n">s4</span><span class="p">,</span> <span class="n">s5</span><span class="p">,</span> <span class="n">s6</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
@@ -8130,8 +8189,8 @@ The sums of squared residuals is [3.816829e-30].
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>The coefficients are [ 2.00000000e-01  5.00000000e-01 -4.28245569e-17 -9.07151373e-17].
-The sums of squared residuals is [2.00698394e-30].
+<pre>The coefficients are [ 2.00000000e-01  5.00000000e-01  9.15446698e-18 -9.07151373e-17].
+The sums of squared residuals is [2.32410096e-30].
 </pre>
 </div>
 </div>
@@ -8170,13 +8229,13 @@ The sums of squared residuals is [2.00698394e-30].
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [31]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [251]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">make_noisy</span><span class="p">(</span><span class="n">spec</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">factor</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
     <span class="n">ret</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">spec</span><span class="p">:</span>
-        <span class="n">gaussian_multiplicative_noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">factor</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">spec</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">gaussian_multiplicative_noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">factor</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">s</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
         <span class="n">ret</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span> <span class="o">*</span> <span class="n">gaussian_multiplicative_noise</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">ret</span>
 </pre></div>
@@ -8189,13 +8248,13 @@ The sums of squared residuals is [2.00698394e-30].
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [32]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [252]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">s3</span> <span class="o">=</span> <span class="mf">0.3</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.3</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.2</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">67</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">70</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
-<span class="n">s4</span> <span class="o">=</span> <span class="mf">0.2</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.2</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">62</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.0</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">s5</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.2</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">44</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">s6</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.0</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.7</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">s3</span> <span class="o">=</span> <span class="mf">0.3</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.3</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.2</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">670</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">700</span><span class="p">,</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">s4</span> <span class="o">=</span> <span class="mf">0.2</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.2</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">620</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.0</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">640</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">s5</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.2</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">440</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">s6</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">160</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.0</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">220</span><span class="p">,</span><span class="mi">40</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.7</span><span class="o">*</span><span class="n">peak</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
 
 <span class="c1"># make noisy</span>
 <span class="n">s3_noisy</span><span class="p">,</span> <span class="n">s4_noisy</span><span class="p">,</span> <span class="n">s5_noisy</span><span class="p">,</span> <span class="n">s6_noisy</span> <span class="o">=</span> <span class="n">make_noisy</span><span class="p">([</span><span class="n">s3</span><span class="p">,</span> <span class="n">s4</span><span class="p">,</span> <span class="n">s5</span><span class="p">,</span> <span class="n">s6</span><span class="p">])</span>
@@ -8271,7 +8330,7 @@ Like in the <a href="https://ramanspy.readthedocs.io/en/latest/auto_tutorials/ii
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [33]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [253]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
@@ -8279,7 +8338,7 @@ Like in the <a href="https://ramanspy.readthedocs.io/en/latest/auto_tutorials/ii
 <span class="kn">import</span><span class="w"> </span><span class="nn">zipfile</span>
 
 <span class="c1"># Change this to the downloaded data dir</span>
-<span class="n">data_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"data"</span><span class="p">)</span>
+<span class="n">data_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"tmp_data"</span><span class="p">)</span>
 <span class="n">data_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># Download bacterial spectra following the RamanSPy tutorial</span>
@@ -8290,9 +8349,9 @@ Like in the <a href="https://ramanspy.readthedocs.io/en/latest/auto_tutorials/ii
     <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">dropbox_url</span><span class="p">)</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="s2">"wb"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Downloaded dataset to </span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Downloaded dataset to </span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Dataset already exists at </span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s2">, skipping download."</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Dataset already exists at </span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s2">, skipping download."</span><span class="p">)</span>
 
 <span class="c1"># Unzip the file</span>
 <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">zip_ref</span><span class="p">:</span>
@@ -8325,8 +8384,8 @@ Like in the <a href="https://ramanspy.readthedocs.io/en/latest/auto_tutorials/ii
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Dataset already exists at data/bacteria_dataset.zip, skipping download.
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>[INFO] &lt;module&gt;: Dataset already exists at tmp_data/bacteria_dataset.zip, skipping download.
 </pre>
 </div>
 </div>
@@ -8354,7 +8413,7 @@ Like in the <a href="https://ramanspy.readthedocs.io/en/latest/auto_tutorials/ii
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [34]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [254]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
@@ -8387,7 +8446,7 @@ Like in the <a href="https://ramanspy.readthedocs.io/en/latest/auto_tutorials/ii
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [35]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [255]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># the two components</span>
@@ -8419,7 +8478,7 @@ Like in the <a href="https://ramanspy.readthedocs.io/en/latest/auto_tutorials/ii
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[35]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[255]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>Text(0.5, 1.0, 'Mixed bacterial spectrum')</pre>
 </div>
@@ -8449,7 +8508,7 @@ Like in the <a href="https://ramanspy.readthedocs.io/en/latest/auto_tutorials/ii
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [36]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [256]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">c</span><span class="p">,</span> <span class="n">redidual</span> <span class="o">=</span> <span class="n">demix</span><span class="p">(</span><span class="n">components</span><span class="o">=</span><span class="p">[</span><span class="n">ecoli_spectrum</span><span class="o">.</span><span class="n">spectral_data</span><span class="p">,</span> <span class="n">calbicans_spectrum</span><span class="o">.</span><span class="n">spectral_data</span><span class="p">],</span> <span class="n">mixed</span><span class="o">=</span><span class="n">mixed_bac</span><span class="o">.</span><span class="n">spectral_data</span><span class="p">)</span>
@@ -8484,7 +8543,7 @@ Like in the <a href="https://ramanspy.readthedocs.io/en/latest/auto_tutorials/ii
 <li>Assume the spectrum of the background is not known and can not be simply subtracted.</li>
 <li>Estimate the baseline and subtract it. Also called baseline correction.</li>
 </ul>
-<p>Let's create a synthetic spectrum with a simple backgorund and noise.</p>
+<p>Let's create a synthetic spectrum with a simple background and noise.</p>
 </div>
 </div>
 </div>
@@ -8493,7 +8552,7 @@ Like in the <a href="https://ramanspy.readthedocs.io/en/latest/auto_tutorials/ii
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [37]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [257]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
@@ -8506,8 +8565,8 @@ Like in the <a href="https://ramanspy.readthedocs.io/en/latest/auto_tutorials/ii
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">background_signal</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
 <span class="c1"># and add it to our signal</span>
-<span class="n">s3_nosiy_bck</span> <span class="o">=</span> <span class="n">background_signal</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">s3_noisy</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s3_nosiy_bck</span><span class="p">);</span>
+<span class="n">s3_noisy_bck</span> <span class="o">=</span> <span class="n">background_signal</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">s3_noisy</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s3_noisy_bck</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -8541,11 +8600,11 @@ Like in the <a href="https://ramanspy.readthedocs.io/en/latest/auto_tutorials/ii
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [38]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [258]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">s4_nosiy_bck</span> <span class="o">=</span> <span class="n">background_signal</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">s4_noisy</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s4_nosiy_bck</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">s4_noisy_bck</span> <span class="o">=</span> <span class="n">background_signal</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">s4_noisy</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s4_noisy_bck</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -8555,12 +8614,6 @@ Like in the <a href="https://ramanspy.readthedocs.io/en/latest/auto_tutorials/ii
 <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[38]:</div>
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>[&lt;matplotlib.lines.Line2D at 0x1589e9340&gt;]</pre>
-</div>
-</div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedImage jp-OutputArea-output" tabindex="0">
@@ -8579,7 +8632,7 @@ Like in the <a href="https://ramanspy.readthedocs.io/en/latest/auto_tutorials/ii
 <h3 id="Removing-noise:-Savitzky%E2%80%93Golay-filter">Removing noise: Savitzky–Golay filter<a class="anchor-link" href="#Removing-noise:-Savitzky%E2%80%93Golay-filter">¶</a></h3><p>Given a signal, one can locally, i.e., within a symmetric window of a fixed size around the point to be approximated, fit a least-square error polynomial. The simplest such filter is a non-causal moving average. The filter is a least-squares solution to fitting a polynomial of degree 0.</p>
 <p>Further literature</p>
 <ul>
-<li>Reading and discussing <a href="https://en.wikipedia.org/wiki/Savitzky%E2%80%93Golay_filter">Savitzky–Golay filters</a> as a way to locally fit a polinomial to the signal, or equivalently, perform a convolution with a non-causal filter signal.</li>
+<li>Reading and discussing <a href="https://en.wikipedia.org/wiki/Savitzky%E2%80%93Golay_filter">Savitzky–Golay filters</a> as a way to locally fit a polynomial to the signal, or equivalently, perform a convolution with a non-causal filter signal.</li>
 <li>The paper <a href="https://pubs.acs.org/doi/abs/10.1021/ac60214a047">Savitzky and Golay (1964)</a>.</li>
 </ul>
 </div>
@@ -8590,14 +8643,14 @@ Like in the <a href="https://ramanspy.readthedocs.io/en/latest/auto_tutorials/ii
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [39]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [259]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">s3_denoise_est</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">savgol_filter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">s3_nosiy_bck</span><span class="p">,</span> <span class="n">window_length</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">polyorder</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">s3_denoise_est</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">savgol_filter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">s3_noisy_bck</span><span class="p">,</span> <span class="n">window_length</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">polyorder</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s3_nosiy_bck</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s3_denoise_est</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s3_noisy_bck</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s3_denoise_est</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -8607,12 +8660,6 @@ Like in the <a href="https://ramanspy.readthedocs.io/en/latest/auto_tutorials/ii
 <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[39]:</div>
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>[&lt;matplotlib.lines.Line2D at 0x158db6930&gt;]</pre>
-</div>
-</div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedImage jp-OutputArea-output" tabindex="0">
@@ -8637,7 +8684,7 @@ Like in the <a href="https://ramanspy.readthedocs.io/en/latest/auto_tutorials/ii
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [40]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># setup the preprocessing pipeline</span>
@@ -8649,7 +8696,7 @@ Like in the <a href="https://ramanspy.readthedocs.io/en/latest/auto_tutorials/ii
 <span class="c1"># apply pipeline</span>
 <span class="n">s3_est</span> <span class="o">=</span> <span class="n">pipe</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">rp</span><span class="o">.</span><span class="n">Spectrum</span><span class="p">(</span><span class="n">s3_denoise_est</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
 
-<span class="c1"># backgorund estimate</span>
+<span class="c1"># background estimate</span>
 <span class="n">bkg_est</span> <span class="o">=</span> <span class="n">s3_denoise_est</span> <span class="o">-</span> <span class="n">s3_est</span><span class="o">.</span><span class="n">spectral_data</span>
 
 <span class="c1"># plot the results</span>
@@ -8674,7 +8721,7 @@ Like in the <a href="https://ramanspy.readthedocs.io/en/latest/auto_tutorials/ii
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[40]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>Text(0.5, 1.0, 'Estimated signal and signal')</pre>
 </div>
