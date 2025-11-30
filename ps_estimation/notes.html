@@ -7536,14 +7536,13 @@ MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 <p>(b) Gradient descent with random initial guesses sampled uniformly from the bounds: $\mu \in [0.1, 2]$, $K \in [0.3, 3]$, $X_0 \in [0.001, 0.1]$.</p>
 <p>(c) Differential evolution with bounds as in (b), using 300 iterations.</p>
 <p>For each method, compute the success rate (percentage of fits where all three parameters are within 10% of true values) and report the median fitting time. Which method is most reliable? Which is fastest? When would you use each approach? Compare your results to the 30% success rate we observed in the lecture for random initial guesses.</p>
-<h1 id="ExerciseReal-experimental-data">ExerciseReal experimental data<a class="anchor-link" href="#ExerciseReal-experimental-data">¶</a></h1><p>Your colleague has provided three bacterial growth curves from different experimental conditions. The data files are available as <code>growth_curve_1.csv</code>, <code>growth_curve_2.csv</code>, and <code>growth_curve_3.csv</code> in the <code>data</code> subdirectory, each with columns <code>time</code> (hours) and <code>OD</code> (optical density).</p>
+<h1 id="Problem-3:-Real-experimental-data">Problem 3: Real experimental data<a class="anchor-link" href="#Problem-3:-Real-experimental-data">¶</a></h1><p>Your colleague has provided three bacterial growth curves from different experimental conditions. The data files are available as <code>growth_curve_1.csv</code>, <code>growth_curve_2.csv</code>, and <code>growth_curve_3.csv</code> in the <code>data</code> subdirectory, each with columns <code>time</code> (hours) and <code>OD</code> (optical density).</p>
 <p>For each dataset:</p>
 <p>(a) Plot the data and visually inspect it. Does it look like clean logistic growth, or are there complications (lag phase, death phase, noise)?</p>
 <p>(b) Fit the logistic model using the combined strategy.</p>
 <p>(c) Plot the residuals (data minus model). Are they randomly scattered around zero, or do you see systematic patterns?</p>
 <p>(d) Calculate the residual sum of squares and comment on model adequacy.</p>
-<p>(e) If the model fits poorly (systematic residuals like we saw with Well B1), try the two-resource model and compare the fits. Does the two-resource model improve the residual sum of squares by more than 50%?</p>
-<p>Which dataset was easiest to fit? Which required model extensions? What biological interpretation can you give for datasets that need two resources?</p>
+<p>(e) If the model fits poorly (systematic residuals like we saw with Well B1), try extending the model.</p>
 </div>
 </div>
 </div>
