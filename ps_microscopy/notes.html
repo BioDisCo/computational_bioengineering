@@ -7996,7 +7996,14 @@ Since we are assuming we have a 100x setup, a pixel will show 1.4 um / 100 = 0.0
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Preparing-Data-for-the-Cell-Segmenter">Preparing Data for the Cell Segmenter<a class="anchor-link" href="#Preparing-Data-for-the-Cell-Segmenter">¶</a></h2><p>You can check out the tutorial at <a href="https://symbac.readthedocs.io/en/latest/examples/omnipose_training_data_generator.html#Training-Omnipose">https://symbac.readthedocs.io/en/latest/examples/omnipose_training_data_generator.html#Training-Omnipose</a></p>
+<h2 id="Preparing-Data-for-the-Cell-Segmenter">Preparing Data for the Cell Segmenter<a class="anchor-link" href="#Preparing-Data-for-the-Cell-Segmenter">¶</a></h2><p>Prepare 3 directories with image data:</p>
+<ul>
+<li><code>tmp_data/train</code>: Images of the form <code>img_0000.tif</code> and <code>mask_0000.tif</code>, etc. files. You can take 20 generated files for this. How will you choose these files? Do you take the 20 first or do you pick them randomly? Why?</li>
+<li><code>tmp_data/test</code>: Another 10 generated images and masks.</li>
+<li><code>tmp_data/validate</code>: The remaining images and masks.</li>
+</ul>
+<p>It is good practice to view the first ones in Python to see if the images and masks are not visually off.
+You can take the code to view such images from the lecture.</p>
 </div>
 </div>
 </div>
@@ -8007,7 +8014,14 @@ Since we are assuming we have a 100x setup, a pixel will show 1.4 um / 100 = 0.0
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Training-the-Cell-Segmenter">Training the Cell Segmenter<a class="anchor-link" href="#Training-the-Cell-Segmenter">¶</a></h2><p>The tutorial <a href="https://symbac.readthedocs.io/en/latest/examples/seg_with_omnipose.html">https://symbac.readthedocs.io/en/latest/examples/seg_with_omnipose.html</a> is for the mother-machine.</p>
+<h2 id="Training-the-Cell-Segmenter">Training the Cell Segmenter<a class="anchor-link" href="#Training-the-Cell-Segmenter">¶</a></h2><p>In the lecture we trained a cellpose model on training files. You can use this code and adapt it to the data, here.
+The training may take very long, so it is completely fine if you just train a single epoche and on, say 2 files from the training set to demonstrate how it works.</p>
+<p>Think about the following decisions (you do not need to code them):</p>
+<ul>
+<li>Do you use transformations for training and why/why not?</li>
+<li>How do you include testing?</li>
+<li>How would you do validation?</li>
+</ul>
 </div>
 </div>
 </div>
